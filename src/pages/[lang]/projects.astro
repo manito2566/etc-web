@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations, pick } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+import { getCollection } from "astro:content";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "th" } }, { params: { lang: "en" } }];
+}
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const projects = (await getCollection("projects")).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
+---
+<BaseLayout lang={lang} title={t("projects.title")} description={t("projects.desc")}>
+  <h1 class="text-2xl font-bold text-slate-800">{t("projects.title")}</h1>
+  <p class="mt-1 text-slate-500">{t("projects.desc")}</p>
+  <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {projects.map((p) => (
+      <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+        <div class="flex h-32 items-center justify-center bg-brand-50 text-brand-600">
+          <i class={`ti ti-${p.data.icon} text-5xl`} aria-hidden="true"></i>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-medium text-brand-700">{pick(lang, p.data.category_th, p.data.category_en)}</span>
+            {p.data.year && <span class="text-xs text-slate-400">{p.data.year}</span>}
+          </div>
+          <h2 class="mt-1 font-semibold text-slate-800">{pick(lang, p.data.title_th, p.data.title_en)}</h2>
+          <p class="mt-2 text-sm text-slate-600">{pick(lang, p.data.desc_th, p.data.desc_en)}</p>
+          <div class="mt-3 flex flex-wrap items-center gap-2">
+            {p.data.student && <span class="text-xs text-slate-500"><i class="ti ti-user" aria-hidden="true"></i> {p.data.student}</span>}
+            {pick(lang, p.data.award_th, p.data.award_en) && (
+              <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800"><i class="ti ti-trophy" aria-hidden="true"></i> {pick(lang, p.data.award_th, p.data.award_en)}</span>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

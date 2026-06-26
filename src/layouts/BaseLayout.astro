@@ -20,6 +20,8 @@ const fullTitle = title ? `${title} — ${t("site.name")}` : t("site.name");
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
     <title>{fullTitle}</title>
     {description && <meta name="description" content={description} />}
   </head>

@@ -1,35 +1,43 @@
-// ค่าตั้งค่าระดับเว็บ + ลิงก์ระบบภายนอกที่เชื่อมกับพอร์ทัล ETC
-
-const BASE = "https://verification-msu.web.app";
+// ค่าตั้งค่าระดับเว็บ + ลิงก์ระบบในเครือข่ายของสาขา (ecosystem)
 
 export const site = {
-  // หน้าแรกของระบบทวนสอบผลสัมฤทธิ์ (CLO/PLO) — แอปแยกที่มีอยู่เดิม
-  verificationUrl: `${BASE}/dashboard/`,
-
-  // โมดูลย่อยของระบบทวนสอบ ใช้ทำดีปลิงก์รายเกณฑ์ AUN-QA
-  verification: {
-    plo: { url: `${BASE}/reports/plo-achievement/`, th: "รายงานการบรรลุ PLO", en: "PLO achievement report" },
-    clo: { url: `${BASE}/reports/clo-achievement/`, th: "รายงานการบรรลุ CLO", en: "CLO achievement report" },
-    map: { url: `${BASE}/reports/curriculum-mapping/`, th: "Curriculum Map", en: "Curriculum mapping" },
-    plan: { url: `${BASE}/verifications/plan/`, th: "แผน/ผลการทวนสอบ", en: "Verification plan & results" },
-  },
-} as const;
-
-export type VerificationKey = keyof typeof site.verification;
-
-// แมปตัวบ่งชี้ AUN-QA → โมดูลระบบทวนสอบที่ใช้เป็นหลักฐานสนับสนุน
-export const verificationBySubcriterion: Record<string, VerificationKey[]> = {
-  "1.1": ["plo"], // การกำหนด PLO
-  "1.2": ["plo", "clo"], // PLO/CLO รายวิชาสอดคล้องกับ PLO หลักสูตร
-  "1.5": ["plo", "plan"], // การบรรลุ PLO เมื่อสำเร็จการศึกษา
-  "2.2": ["map"], // constructive alignment
-  "2.4": ["map"], // การมีส่วนช่วยของรายวิชาต่อ ELO
-  "4.5": ["clo"], // วิธีประเมินวัดการบรรลุ ELO
-  "4.7": ["plan"], // ทบทวน/ปรับปรุงการประเมิน
-  "8.4": ["plo"], // ข้อมูลแสดงการบรรลุ PLO โดยตรง
+  name_th: "สาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา",
+  name_en: "Educational Technology and Computer Education",
+  shortName: "ETC",
+  faculty_th: "คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม",
+  faculty_en: "Faculty of Education, Mahasarakham University",
 };
 
-// คืนรายการลิงก์ระบบทวนสอบของตัวบ่งชี้หนึ่ง
-export function verificationLinksFor(code: string) {
-  return (verificationBySubcriterion[code] ?? []).map((k) => site.verification[k]);
-}
+// ระบบในเครือข่ายของสาขา — แสดงเป็นการ์ดศูนย์รวมบนหน้าแรก
+export const ecosystem = [
+  {
+    key: "alumni",
+    url: "https://etc-alumni-webappv1.web.app/",
+    icon: "ti-users",
+    title_th: "เครือข่ายศิษย์เก่า",
+    title_en: "Alumni network",
+    desc_th: "ทำเนียบ · กิจกรรม · ข่าวศิษย์เก่า",
+    desc_en: "Directory, events and alumni news",
+  },
+  {
+    key: "verification",
+    url: "https://verification-msu.web.app/dashboard/",
+    icon: "ti-shield-check",
+    title_th: "ระบบทวนสอบ / ประกันคุณภาพ",
+    title_en: "Verification & QA system",
+    desc_th: "มคอ. · PLO/CLO · AUN-QA",
+    desc_en: "TQF, PLO/CLO and AUN-QA",
+  },
+  {
+    key: "faculty-site",
+    url: "https://manito2566.github.io/manit-asanok.github.io/index.html",
+    icon: "ti-user-star",
+    title_th: "เว็บผลงานอาจารย์",
+    title_en: "Faculty portfolio",
+    desc_th: "ผลงานวิชาการ · Scopus · CV",
+    desc_en: "Publications, Scopus and CV",
+  },
+] as const;
+
+// ลิงก์ระบบทวนสอบ (ใช้สำหรับไฮไลต์ความก้าวหน้าคุณภาพบนหน้าแรก)
+export const verificationUrl = ecosystem.find((e) => e.key === "verification")!.url;

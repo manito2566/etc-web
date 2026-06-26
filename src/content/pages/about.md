@@ -1,28 +1,30 @@
 ---
-title_th: "เกี่ยวกับหลักสูตร ETC"
-title_en: "About the ETC Programme"
+title_th: "เกี่ยวกับสาขา"
+title_en: "About the programme"
 order: 1
 body_th: |
-  หลักสูตร ETC มุ่งผลิตบัณฑิตที่มีสมรรถนะด้านเทคโนโลยีและการสื่อสาร
-  พร้อมทักษะการคิดเชิงคำนวณ การออกแบบ และความเป็นผู้ประกอบการ
+  หลักสูตรการศึกษาบัณฑิต (กศ.บ. 4 ปี) สาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา
+  คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม มุ่งผลิตครูนักออกแบบการเรียนรู้ยุคดิจิทัล
 
-  **วิสัยทัศน์:** เป็นหลักสูตรชั้นนำที่บริหารด้วยข้อมูลและประกันคุณภาพตามมาตรฐานสากล AUN-QA
+  **อัตลักษณ์ของสาขา:** วิชาเอกคู่ (เทคโนโลยีการศึกษา + คอมพิวเตอร์ศึกษา)
+  ร่วมกับการฝึกประสบการณ์วิชาชีพครูที่เข้มข้น ทำให้บัณฑิตเก่งทั้งสื่อ การโค้ด และการสอน
 
-  **ผลการเรียนรู้ที่คาดหวังของหลักสูตร (PLOs):**
-  - PLO1: ประยุกต์องค์ความรู้หลักของสาขาเพื่อแก้ปัญหาจริง
-  - PLO2: ออกแบบและพัฒนานวัตกรรมด้วยกระบวนการเชิงระบบ
-  - PLO3: สื่อสารและทำงานร่วมกับผู้อื่นอย่างมีประสิทธิภาพ
-  - PLO4: มีจริยธรรมวิชาชีพและความรับผิดชอบต่อสังคม
+  **ผลการเรียนรู้ที่คาดหวัง (PLOs):**
+  - PLO1: ออกแบบและผลิตสื่อ/นวัตกรรมการเรียนรู้ด้วยกระบวนการเชิงระบบ
+  - PLO2: ประยุกต์การคิดเชิงคำนวณและเทคโนโลยีเพื่อจัดการเรียนรู้
+  - PLO3: จัดการเรียนการสอนและประเมินผู้เรียนอย่างมีคุณภาพ
+  - PLO4: มีจิตวิญญาณความเป็นครู จริยธรรม และความรับผิดชอบต่อสังคม
 body_en: |
-  The ETC programme cultivates graduates with strong technology and
-  communication competences, computational thinking, design, and an
-  entrepreneurial mindset.
+  The Bachelor of Education (4-year B.Ed.) in Educational Technology and Computer
+  Education, Faculty of Education, Mahasarakham University, educates digital-age
+  learning designers.
 
-  **Vision:** A leading, data-driven programme assured to the international AUN-QA standard.
+  **Programme identity:** a dual major (Educational Technology + Computer Education)
+  combined with an intensive teaching practicum — graduates excel in media, coding and teaching.
 
   **Programme Learning Outcomes (PLOs):**
-  - PLO1: Apply core disciplinary knowledge to solve real-world problems
-  - PLO2: Design and develop innovations through a systematic process
-  - PLO3: Communicate and collaborate effectively
-  - PLO4: Demonstrate professional ethics and social responsibility
+  - PLO1: Design and produce learning media/innovations through a systematic process
+  - PLO2: Apply computational thinking and technology to manage learning
+  - PLO3: Deliver quality teaching and student assessment
+  - PLO4: Demonstrate the spirit of a teacher, ethics and social responsibility
 ---

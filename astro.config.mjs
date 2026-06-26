@@ -5,8 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 // ตั้งค่า i18n: รองรับสองภาษา ไทย (ค่าตั้งต้น) / อังกฤษ
 // เส้นทางจะเป็น /th/... และ /en/...  (prefixDefaultLocale: true => ทุกภาษามี prefix)
 export default defineConfig({
-  // เปลี่ยน site ให้ตรงกับโดเมนจริงตอน deploy (เช่น https://etc.example.ac.th)
-  site: "https://example.com",
+  // โดเมนจริงบน Netlify (เปลี่ยนได้ถ้าตั้ง custom domain ภายหลัง)
+  site: "https://deft-jelly-682bd9.netlify.app",
   i18n: {
     locales: ["th", "en"],
     defaultLocale: "th",

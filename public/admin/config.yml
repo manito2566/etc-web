@@ -2,7 +2,7 @@
 # แก้ค่า repo ให้ตรงกับ GitHub repo ของสาขา ก่อน deploy
 backend:
   name: github
-  repo: OWNER/REPO        # << เปลี่ยนเป็น เช่น etc-faculty/etc-web
+  repo: manito2566/etc-web
   branch: main
 
 # เปิดให้แก้แบบ local ก่อนได้ (รัน: npx @sveltia/cms-proxy-server)

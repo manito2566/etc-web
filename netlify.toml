@@ -1,0 +1,13 @@
+# การตั้งค่า deploy สำหรับ Netlify — เว็บสแตติก (Astro)
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# ส่ง /admin/ ไปยังหน้า Sveltia CMS (กันปัญหา trailing slash)
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301

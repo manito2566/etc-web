@@ -1,0 +1,17 @@
+---
+import { switchLangPath } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const other: Lang = lang === "th" ? "en" : "th";
+const href = switchLangPath(Astro.url, other);
+---
+<a
+  href={href}
+  class="rounded-md border border-slate-300 px-3 py-1 text-sm font-medium text-slate-700 hover:bg-slate-100"
+  aria-label="Switch language"
+>
+  {other === "en" ? "EN" : "ไทย"}
+</a>

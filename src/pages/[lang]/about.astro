@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations, pick } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+import { getEntry } from "astro:content";
+import { marked } from "marked";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "th" } }, { params: { lang: "en" } }];
+}
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const about = await getEntry("pages", "about");
+const title = about ? pick(lang, about.data.title_th, about.data.title_en) : t("nav.about");
+const bodyMd = about ? pick(lang, about.data.body_th, about.data.body_en) : "";
+const bodyHtml = bodyMd ? marked.parse(bodyMd) : "";
+---
+<BaseLayout lang={lang} title={title}>
+  <h1 class="text-2xl font-bold text-slate-800">{title}</h1>
+  <article class="prose-etc mt-6 max-w-none" set:html={bodyHtml}></article>
+</BaseLayout>

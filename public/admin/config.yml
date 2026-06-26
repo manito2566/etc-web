@@ -1,0 +1,172 @@
+# ===== Sveltia CMS configuration =====
+# แก้ค่า repo ให้ตรงกับ GitHub repo ของสาขา ก่อน deploy
+backend:
+  name: github
+  repo: OWNER/REPO        # << เปลี่ยนเป็น เช่น etc-faculty/etc-web
+  branch: main
+
+# เปิดให้แก้แบบ local ก่อนได้ (รัน: npx @sveltia/cms-proxy-server)
+local_backend: true
+
+# โฟลเดอร์เก็บไฟล์หลักฐานที่อัปโหลดผ่าน CMS
+media_folder: "public/evidence"
+public_folder: "/evidence"
+
+# ตั้งภาษา UI ของ CMS เป็นไทย
+locale: "th"
+
+collections:
+  # ---------- AUN-QA: เกณฑ์ (8) ----------
+  - name: criteria
+    label: "AUN-QA · เกณฑ์ (8)"
+    label_singular: "เกณฑ์"
+    folder: "src/content/criteria"
+    format: yaml-frontmatter
+    identifier_field: code
+    create: false        # มีครบ 8 เกณฑ์แล้ว ไม่ต้องเพิ่ม
+    delete: false
+    summary: "{{code}} · {{title_th}}"
+    fields:
+      - { name: code, label: "ลำดับเกณฑ์", widget: number, value_type: int, min: 1, max: 8 }
+      - { name: title_th, label: "ชื่อเกณฑ์ (ไทย)", widget: string }
+      - { name: title_en, label: "ชื่อเกณฑ์ (อังกฤษ)", widget: string }
+      - { name: intro_th, label: "คำนำ (ไทย)", widget: text, required: false }
+      - { name: intro_en, label: "คำนำ (อังกฤษ)", widget: text, required: false }
+      - { name: order, label: "ลำดับแสดงผล", widget: number, value_type: int, required: false }
+
+  # ---------- AUN-QA: ตัวบ่งชี้ (53) ----------
+  - name: subcriteria
+    label: "AUN-QA · ตัวบ่งชี้ (53)"
+    label_singular: "ตัวบ่งชี้"
+    folder: "src/content/subcriteria"
+    format: yaml-frontmatter
+    identifier_field: code
+    create: true
+    delete: false
+    sortable_fields: [code]
+    summary: "{{code}} · {{requirement_th}}"
+    fields:
+      - { name: code, label: "รหัสตัวบ่งชี้ (เช่น 1.1)", widget: string }
+      - name: criterion
+        label: "เกณฑ์แม่"
+        widget: relation
+        collection: criteria
+        value_field: "{{slug}}"
+        search_fields: [title_th, title_en, code]
+        display_fields: [code, title_th]
+      - { name: requirement_th, label: "ข้อกำหนด (ไทย)", widget: text }
+      - { name: requirement_en, label: "ข้อกำหนด (อังกฤษ)", widget: text }
+      - { name: narrative_th, label: "ผลการดำเนินงาน/SAR (ไทย)", widget: markdown, required: false }
+      - { name: narrative_en, label: "ผลการดำเนินงาน/SAR (อังกฤษ)", widget: markdown, required: false }
+      - name: pdca
+        label: "สถานะ PDCA"
+        widget: select
+        default: none
+        options:
+          - { label: "ยังไม่เริ่ม", value: none }
+          - { label: "วางแผน (Plan)", value: plan }
+          - { label: "ดำเนินการ (Do)", value: do }
+          - { label: "ตรวจสอบ (Check)", value: check }
+          - { label: "ปรับปรุง (Act)", value: act }
+      - { name: responsible, label: "ผู้รับผิดชอบ", widget: string, required: false }
+      - { name: rating, label: "ระดับคะแนน (0-7)", widget: number, value_type: int, min: 0, max: 7, default: 0 }
+      - { name: target, label: "เป้าหมาย (1-7)", widget: number, value_type: int, min: 1, max: 7, default: 4 }
+      - name: evidence
+        label: "หลักฐานอ้างอิง"
+        widget: list
+        required: false
+        label_singular: "หลักฐาน"
+        summary: "{{fields.title_th}}"
+        fields:
+          - { name: title_th, label: "ชื่อหลักฐาน (ไทย)", widget: string }
+          - { name: title_en, label: "ชื่อหลักฐาน (อังกฤษ)", widget: string, required: false }
+          - { name: link, label: "ไฟล์/ลิงก์", widget: file }
+          - { name: date, label: "วันที่", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, required: false }
+
+  # ---------- AUN-QA: ผลประเมินรายปี (กราฟแนวโน้ม) ----------
+  - name: assessments
+    label: "AUN-QA · ผลประเมินรายปี"
+    label_singular: "ปีการศึกษา"
+    folder: "src/content/assessments"
+    format: yaml-frontmatter
+    identifier_field: year
+    create: true
+    sortable_fields: [year]
+    summary: "ปี {{year}}"
+    fields:
+      - { name: year, label: "ปีการศึกษา (พ.ศ.)", widget: number, value_type: int, min: 2560, max: 2600 }
+      - { name: label, label: "ป้ายแสดงผล", widget: string, required: false, hint: "เว้นว่างจะใช้เลขปี" }
+      - { name: note_th, label: "หมายเหตุ (ไทย)", widget: text, required: false }
+      - { name: note_en, label: "หมายเหตุ (อังกฤษ)", widget: text, required: false }
+      - { name: overall, label: "คะแนนรวม (เว้นว่าง = เฉลี่ยอัตโนมัติ)", widget: number, value_type: float, min: 1, max: 7, required: false }
+      - name: scores
+        label: "คะแนนรายเกณฑ์"
+        widget: list
+        label_singular: "เกณฑ์"
+        summary: "เกณฑ์ {{fields.criterion}} = {{fields.score}}"
+        fields:
+          - { name: criterion, label: "เกณฑ์ที่ (1-8)", widget: number, value_type: int, min: 1, max: 8 }
+          - { name: score, label: "คะแนน (1-7)", widget: number, value_type: float, min: 1, max: 7 }
+
+  # ---------- เว็บประชาสัมพันธ์ ----------
+  - name: pages
+    label: "หน้าเนื้อหา"
+    folder: "src/content/pages"
+    format: yaml-frontmatter
+    create: true
+    summary: "{{title_th}}"
+    fields:
+      - { name: title_th, label: "หัวข้อ (ไทย)", widget: string }
+      - { name: title_en, label: "หัวข้อ (อังกฤษ)", widget: string }
+      - { name: body_th, label: "เนื้อหา (ไทย)", widget: markdown, required: false }
+      - { name: body_en, label: "เนื้อหา (อังกฤษ)", widget: markdown, required: false }
+      - { name: order, label: "ลำดับ", widget: number, value_type: int, required: false }
+
+  - name: courses
+    label: "รายวิชา"
+    folder: "src/content/courses"
+    format: yaml-frontmatter
+    create: true
+    summary: "{{code}} · {{name_th}}"
+    fields:
+      - { name: code, label: "รหัสวิชา", widget: string }
+      - { name: name_th, label: "ชื่อวิชา (ไทย)", widget: string }
+      - { name: name_en, label: "ชื่อวิชา (อังกฤษ)", widget: string }
+      - { name: credits, label: "หน่วยกิต", widget: number, value_type: int, required: false }
+      - { name: year, label: "ชั้นปี", widget: number, value_type: int, required: false }
+      - { name: desc_th, label: "คำอธิบาย (ไทย)", widget: text, required: false }
+      - { name: desc_en, label: "คำอธิบาย (อังกฤษ)", widget: text, required: false }
+
+  - name: staff
+    label: "อาจารย์"
+    folder: "src/content/staff"
+    format: yaml-frontmatter
+    create: true
+    summary: "{{name_th}}"
+    fields:
+      - { name: name_th, label: "ชื่อ (ไทย)", widget: string }
+      - { name: name_en, label: "ชื่อ (อังกฤษ)", widget: string }
+      - { name: position_th, label: "ตำแหน่ง (ไทย)", widget: string, required: false }
+      - { name: position_en, label: "ตำแหน่ง (อังกฤษ)", widget: string, required: false }
+      - { name: email, label: "อีเมล", widget: string, required: false }
+      - { name: expertise_th, label: "ความเชี่ยวชาญ (ไทย)", widget: string, required: false }
+      - { name: expertise_en, label: "ความเชี่ยวชาญ (อังกฤษ)", widget: string, required: false }
+      - { name: photo, label: "รูปภาพ", widget: image, required: false }
+      - { name: order, label: "ลำดับ", widget: number, value_type: int, required: false }
+
+  - name: news
+    label: "ข่าว/กิจกรรม"
+    folder: "src/content/news"
+    format: yaml-frontmatter
+    create: true
+    sortable_fields: [date]
+    summary: "{{date}} · {{title_th}}"
+    fields:
+      - { name: title_th, label: "หัวข้อ (ไทย)", widget: string }
+      - { name: title_en, label: "หัวข้อ (อังกฤษ)", widget: string, required: false }
+      - { name: date, label: "วันที่", widget: datetime, date_format: "YYYY-MM-DD", time_format: false }
+      - { name: summary_th, label: "สรุป (ไทย)", widget: text, required: false }
+      - { name: summary_en, label: "สรุป (อังกฤษ)", widget: text, required: false }
+      - { name: cover, label: "ภาพปก", widget: image, required: false }
+      - { name: body_th, label: "เนื้อหา (ไทย)", widget: markdown, required: false }
+      - { name: body_en, label: "เนื้อหา (อังกฤษ)", widget: markdown, required: false }

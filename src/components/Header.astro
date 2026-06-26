@@ -1,0 +1,64 @@
+---
+import { useTranslations, localizePath } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+import LangSwitch from "./LangSwitch.astro";
+import { site } from "../lib/site";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const path = Astro.url.pathname;
+
+const links: { href: string; label: string }[] = [
+  { href: localizePath(lang, "/"), label: t("nav.home") },
+  { href: localizePath(lang, "/about"), label: t("nav.about") },
+  { href: localizePath(lang, "/courses"), label: t("nav.courses") },
+  { href: localizePath(lang, "/staff"), label: t("nav.staff") },
+  { href: localizePath(lang, "/news"), label: t("nav.news") },
+  { href: localizePath(lang, "/qa"), label: t("nav.qa") },
+];
+const isActive = (href: string) =>
+  href === localizePath(lang, "/") ? path === href || path === href + "/" : path.startsWith(href);
+---
+<header class="no-print sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href={localizePath(lang, "/")} class="flex items-center gap-2">
+      <span class="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 font-bold text-white">ETC</span>
+      <span class="hidden text-sm font-semibold text-slate-800 sm:block">{t("site.name")}</span>
+    </a>
+    <nav class="flex flex-wrap items-center gap-1">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class:list={[
+            "rounded-md px-3 py-1.5 text-sm font-medium transition",
+            isActive(l.href)
+              ? "bg-brand-50 text-brand-700"
+              : "text-slate-600 hover:bg-slate-100",
+          ]}
+        >
+          {l.label}
+        </a>
+      ))}
+      <a
+        href={site.verificationUrl}
+        target="_blank"
+        rel="noopener"
+        class="rounded-md px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100"
+        title={t("nav.verification")}
+      >
+        {t("nav.verification")} ↗
+      </a>
+      <a
+        href="/admin/"
+        class="rounded-md px-3 py-1.5 text-sm font-medium text-slate-500 hover:bg-slate-100"
+        title={t("nav.admin")}
+      >
+        ⚙︎
+      </a>
+      <LangSwitch lang={lang} />
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations, pick } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+import { getCollection } from "astro:content";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "th" } }, { params: { lang: "en" } }];
+}
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const courses = (await getCollection("courses")).sort((a, b) =>
+  a.data.code.localeCompare(b.data.code)
+);
+---
+<BaseLayout lang={lang} title={t("nav.courses")}>
+  <h1 class="text-2xl font-bold text-slate-800">{t("nav.courses")}</h1>
+  <div class="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-white">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-slate-50 text-slate-500">
+        <tr>
+          <th class="px-4 py-3 font-medium">{lang === "th" ? "รหัส" : "Code"}</th>
+          <th class="px-4 py-3 font-medium">{lang === "th" ? "ชื่อวิชา" : "Course"}</th>
+          <th class="px-4 py-3 font-medium">{lang === "th" ? "หน่วยกิต" : "Credits"}</th>
+          <th class="px-4 py-3 font-medium">{lang === "th" ? "ชั้นปี" : "Year"}</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        {courses.map((c) => (
+          <tr class="hover:bg-slate-50">
+            <td class="px-4 py-3 font-mono text-brand-700">{c.data.code}</td>
+            <td class="px-4 py-3">
+              <p class="font-medium text-slate-800">{pick(lang, c.data.name_th, c.data.name_en)}</p>
+              <p class="text-xs text-slate-500">{pick(lang, c.data.desc_th, c.data.desc_en)}</p>
+            </td>
+            <td class="px-4 py-3 text-slate-600">{c.data.credits ?? "–"}</td>
+            <td class="px-4 py-3 text-slate-600">{c.data.year ?? "–"}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</BaseLayout>

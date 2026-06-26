@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* ฟอนต์ไทยที่อ่านง่ายสำหรับงานวิชาการ */
+@theme {
+  --font-sans: "Sarabun", "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-brand-50: #eef5ff;
+  --color-brand-100: #d9e7ff;
+  --color-brand-500: #2563eb;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-brand-900: #1e3a8a;
+}
+
+@font-face {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Sarabun"),
+    url("https://fonts.gstatic.com/s/sarabun/v15/DtVjJx26TKEr37c9YHZJ.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sarabun";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Sarabun"),
+    url("https://fonts.gstatic.com/s/sarabun/v15/DtVmJx26TKEr37c9aBBxUm5O.woff2") format("woff2");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800 antialiased;
+}
+
+/* สไตล์เนื้อหา markdown (หน้า about ฯลฯ) */
+.prose-etc h2 { @apply mt-6 mb-2 text-lg font-bold text-slate-800; }
+.prose-etc p { @apply my-3 leading-relaxed text-slate-700; }
+.prose-etc ul { @apply my-3 list-disc space-y-1 pl-6 text-slate-700; }
+.prose-etc strong { @apply font-semibold text-slate-900; }
+
+/* สำหรับมุมมอง SAR ที่ต้องสั่งพิมพ์ */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    @apply bg-white text-black;
+  }
+  .print-break {
+    page-break-before: always;
+  }
+}

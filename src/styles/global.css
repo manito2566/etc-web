@@ -3,17 +3,26 @@
 /* ฟอนต์ไทย + โทนสี เหลือง-เทา ตามอัตลักษณ์มหาวิทยาลัยมหาสารคาม */
 @theme {
   --font-sans: "Sarabun", "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* น้ำตาล = โทนเดียวกับเว็บศิษย์เก่า (ปรับฮ็กซ์ให้ตรงได้ภายหลัง) */
-  --color-brand-50: #f7f1ea;
-  --color-brand-100: #ecdcc9;
-  --color-brand-200: #dcc0a0;
-  --color-brand-300: #c89a6a;
-  --color-brand-400: #a9743f;
-  --color-brand-500: #8a5a2b;
-  --color-brand-600: #714823;
-  --color-brand-700: #5c3a1d;
-  --color-brand-800: #4a2f18;
-  --color-brand-900: #3a2512;
+  /* น้ำตาล taupe = โทนเดียวกับเว็บศิษย์เก่า ETC-Alumni */
+  --color-brand-50: #f6f2ee;
+  --color-brand-100: #e8ded3;
+  --color-brand-200: #d4c4b4;
+  --color-brand-300: #b8a18b;
+  --color-brand-400: #927863;
+  --color-brand-500: #6f5a47;
+  --color-brand-600: #5e4b3c;
+  --color-brand-700: #4e3f33;
+  --color-brand-800: #3f332a;
+  --color-brand-900: #2f261f;
+  /* ทอง = สีแอกเซนต์ (ชื่อ/เส้นคั่น/วงรอบรูป เหมือนเว็บศิษย์เก่า) */
+  --color-gold-50: #fbf3df;
+  --color-gold-100: #f6e4b8;
+  --color-gold-200: #efce85;
+  --color-gold-300: #e7b94f;
+  --color-gold-400: #dca72c;
+  --color-gold-500: #c8941f;
+  --color-gold-600: #a87916;
+  --color-gold-700: #855f12;
   /* เทา = สีคู่ */
   --color-ink-700: #334155;
   --color-ink-900: #1e293b;

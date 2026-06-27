@@ -29,29 +29,56 @@ const isActive = (href: string) =>
       <span class="grid h-9 w-9 place-items-center rounded-lg bg-gold-400 font-bold text-brand-900">ETC</span>
       <span class="hidden text-sm font-semibold text-slate-800 sm:block">{t("site.short")}</span>
     </a>
-    <nav class="flex flex-wrap items-center justify-end gap-1">
+
+    <!-- เมนูเต็มบนจอใหญ่ -->
+    <nav class="hidden items-center gap-1 lg:flex">
       {links.map((l) => (
         <a
           href={l.href}
           class:list={[
             "rounded-md px-2.5 py-1.5 text-sm font-medium transition",
-            isActive(l.href)
-              ? "bg-brand-50 text-brand-700"
-              : "text-slate-600 hover:bg-slate-100",
+            isActive(l.href) ? "bg-brand-50 text-brand-700" : "text-slate-600 hover:bg-slate-100",
           ]}
         >
           {l.label}
         </a>
       ))}
-      <a
-        href="/admin/"
-        class="rounded-md px-2 py-1.5 text-sm text-slate-400 hover:bg-slate-100"
-        title={t("nav.admin")}
-        aria-label={t("nav.admin")}
-      >
-        ⚙︎
-      </a>
+      <a href="/admin/" class="rounded-md px-2 py-1.5 text-sm text-slate-400 hover:bg-slate-100" title={t("nav.admin")} aria-label={t("nav.admin")}>⚙︎</a>
       <LangSwitch lang={lang} />
     </nav>
+
+    <!-- ปุ่มเมนูบนมือถือ -->
+    <div class="flex items-center gap-2 lg:hidden">
+      <LangSwitch lang={lang} />
+      <button id="menu-btn" type="button" aria-label="เมนู" aria-expanded="false" aria-controls="mobile-menu"
+        class="grid h-9 w-9 place-items-center rounded-md border border-slate-300 text-slate-700 hover:bg-slate-100">
+        <i class="ti ti-menu-2 text-xl" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
+
+  <!-- พาเนลเมนูมือถือ -->
+  <nav id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-2 lg:hidden">
+    {links.map((l) => (
+      <a
+        href={l.href}
+        class:list={[
+          "block rounded-md px-3 py-2.5 text-sm font-medium",
+          isActive(l.href) ? "bg-brand-50 text-brand-700" : "text-slate-700 hover:bg-slate-100",
+        ]}
+      >
+        {l.label}
+      </a>
+    ))}
+    <a href="/admin/" class="block rounded-md px-3 py-2.5 text-sm text-slate-500 hover:bg-slate-100">{t("nav.admin")}</a>
+  </nav>
 </header>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    btn.setAttribute("aria-expanded", String(open));
+  });
+</script>

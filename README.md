@@ -1,40 +1,41 @@
-# เว็บไซต์สาขา ETC + ระบบสารสนเทศ AUN-QA v4.0
+# เว็บไซต์สาขาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา (ETC)
 
-เว็บไซต์เดียวที่ทำงาน 2 ชั้น: **ประชาสัมพันธ์สาขา** + **ระบบจัดการข้อมูล AUN-QA v4.0**
-(8 เกณฑ์ 53 ตัวบ่งชี้) สองภาษา ไทย/อังกฤษ — เป็นเว็บสแตติก โฮสต์ฟรีได้
-และให้ประธาน/อาจารย์แก้เนื้อหาเองผ่านหน้าจอ `/admin`
+เว็บหน้าบ้านของสาขา **กศ.บ. เทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม**
+ทำหน้าที่นำเสนอหลักสูตร ผลงานนิสิต อาจารย์ ศิษย์เก่า ข่าวสาร และเป็น **ศูนย์รวม (hub)**
+เชื่อมระบบต่าง ๆ ของสาขาไว้ที่เดียว สองภาษา ไทย/อังกฤษ
+
+🌐 **Live:** https://etc-msu.netlify.app
 
 ## สถาปัตยกรรม
 
 | ชั้น | เครื่องมือ |
 |------|-----------|
-| Static site | Astro 5 (content collections + i18n) |
-| สไตล์ | Tailwind CSS v4 |
+| Static site | Astro 5 (i18n /th, /en) |
+| สไตล์ | Tailwind CSS v4 · ธีมน้ำตาล taupe + ทอง (เข้าชุดเว็บศิษย์เก่า) |
+| ไอคอน | Tabler icons (webfont) |
 | CMS แก้ผ่านหน้าจอ | Sveltia CMS (`/admin`) — commit เข้า Git อัตโนมัติ |
-| โฮสติง | Netlify / Vercel / GitHub Pages (ฟรี) |
+| โฮสติง | Netlify (auto-deploy จาก GitHub) |
+| SEO | sitemap, Open Graph/Twitter card, canonical, robots.txt |
 
-ข้อมูลทั้งหมดเก็บเป็นไฟล์ Markdown ใน `src/content/` → เป็น **แหล่งข้อมูลเดียว**
-ที่ป้อนทั้งหน้าเว็บ Dashboard และมุมมอง SAR
+## โครงสร้างหน้า (IA)
 
-## โครงสร้างข้อมูล AUN-QA
+หน้าแรก (hub) · เกี่ยวกับสาขา · หลักสูตร · อาจารย์ · ผลงานนิสิต · ศิษย์เก่า · ข่าว/กิจกรรม · ติดต่อ
 
-- `src/content/criteria/` — 8 เกณฑ์ (c1–c8)
-- `src/content/subcriteria/` — 53 ตัวบ่งชี้
-  - การกระจาย: **C1=5, C2=7, C3=6, C4=7, C5=8, C6=6, C7=9, C8=5 = 53**
-  - แต่ละตัวมี: ข้อกำหนด (ไทย/อังกฤษ), narrative, PDCA, ผู้รับผิดชอบ, คะแนน 0–7, เป้าหมาย, รายการหลักฐาน
-- `src/content/assessments/` — ผลการประเมินรายปี (หนึ่งไฟล์ = หนึ่งปี พ.ศ.)
-  ใช้สร้าง **กราฟแนวโน้มคะแนนรายปี** บน Dashboard — เริ่มข้อมูลจริงที่ปี 2567
-  (เพิ่มปีถัดไปผ่าน `/admin` แล้วเส้นแนวโน้มจะปรากฏเอง)
-- `src/content/{pages,courses,staff,news}/` — เนื้อหาประชาสัมพันธ์
+หน้าแรกรวม: hero, ตัวเลขสำคัญ, ไฮไลต์คุณภาพ (ลิงก์ออกระบบทวนสอบ), ผลงานนิสิต,
+การ์ดระบบนิเวศ, ข่าว, ศูนย์ติดต่อแยกตามกลุ่ม
 
-ตารางอ้างอิง **เกณฑ์คะแนน AUN-QA 7 ระดับ** แสดงบน Dashboard (ข้อมูลอยู่ใน `src/lib/qa.ts`)
+## ระบบนิเวศที่เชื่อมโยง (แก้ลิงก์ที่ `src/lib/site.ts`)
 
-**ระบบทวนสอบผลสัมฤทธิ์ (CLO/PLO)** เชื่อมเป็นโมดูลภายนอก (เกณฑ์ที่ 1 และ 4) —
-แก้ URL ได้ที่ `src/lib/site.ts` (`verificationUrl`) ลิงก์ปรากฏที่เมนูและการ์ดบนหน้า `/qa`
+- **เครือข่ายศิษย์เก่า** — https://etc-alumni-webappv1.web.app/
+- **ระบบทวนสอบ / ประกันคุณภาพ** (มคอ., PLO/CLO, AUN-QA) — https://verification-msu.web.app/dashboard/
+- **เว็บผลงานอาจารย์** — https://manito2566.github.io/manit-asanok.github.io/
 
-> ⚠️ **การตรวจสอบข้อความข้อกำหนด:** ข้อความภาษาอังกฤษคัดลอกแบบ verbatim จาก
-> *Guide to AUN-QA Assessment at Programme Level v4.0, Appendix A*
-> ส่วนภาษาไทยเป็นคำแปลใช้งานที่ควรปรับให้ตรงสำนวนทางการของหน่วยงานก่อนใช้จริง
+> งานประกันคุณภาพ AUN-QA ทั้งหมดอยู่ที่ **ระบบทวนสอบ** เว็บนี้เพียงลิงก์ไปและแสดงไฮไลต์ความก้าวหน้า
+
+## ข้อมูล (content collections)
+
+`src/content/` → `pages` (about), `courses`, `projects` (ผลงานนิสิต), `staff`, `news`
+ทุก collection มีฟิลด์คู่ `_th`/`_en` และแก้ผ่าน `/admin` ได้
 
 ## คำสั่งพัฒนา
 
@@ -42,45 +43,15 @@
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # สร้างไฟล์สแตติกใน dist/
-npm run preview  # ดู dist/ ก่อน deploy
 ```
 
-สร้าง/รีเซ็ตข้อมูล AUN-QA ทั้ง 53 ตัว: `python scripts/seed_qa.py`
+## Deploy
 
-## หน้าหลักของระบบ
+push เข้า `main` → Netlify build (`npm run build` → `dist/`) และเผยแพร่อัตโนมัติ
+ตั้งค่า: `astro.config.mjs` (`site`), `public/admin/config.yml` (`repo`), `netlify.toml`
 
-- `/th` `/en` — หน้าแรก + การ์ด 8 เกณฑ์
-- `/th/qa` — Dashboard (ตัวเลขสรุป + เรดาร์คะแนน + ตาราง 8 เกณฑ์)
-- `/th/qa/1` … `/th/qa/8` — รายเกณฑ์ พร้อมตัวบ่งชี้ย่อย/PDCA/หลักฐาน
-- `/th/qa/evidence` — คลังหลักฐาน (ค้นหาได้)
-- `/th/qa/sar` — มุมมองรายงานประเมินตนเอง (พิมพ์/บันทึก PDF ได้)
-- `/admin` — หน้าจอจัดการเนื้อหา (Sveltia CMS)
+## เก็บตก / พัฒนาต่อ
 
-## การแก้เนื้อหาผ่านหน้าจอ (สำหรับอาจารย์)
-
-**ทดลองในเครื่อง (ไม่ต้องมี GitHub):**
-```bash
-npx @sveltia/cms-proxy-server   # เทอร์มินัลที่ 1
-npm run dev                      # เทอร์มินัลที่ 2
-```
-เปิด `http://localhost:4321/admin/` แล้วเลือก "Work with Local Repository"
-
-**ใช้งานจริง:** ดูหัวข้อ Deploy ด้านล่าง แล้วเข้า `https<โดเมน>/admin/` ล็อกอินด้วย GitHub
-
-## Deploy (Netlify — แนะนำ)
-
-1. push โค้ดขึ้น GitHub repo เช่น `etc-faculty/etc-web`
-2. แก้ `public/admin/config.yml` → `repo: etc-faculty/etc-web`, `branch: main`
-3. ที่ Netlify: **Add new site → Import from GitHub** เลือก repo
-   - Build command: `npm run build` · Publish directory: `dist`
-4. เปิดสิทธิ์ให้ CMS เขียน Git (ทางใดทางหนึ่ง):
-   - ใช้ **Netlify Identity + Git Gateway** (ง่ายสุด ไม่ต้องตั้ง OAuth) หรือ
-   - ตั้ง **GitHub OAuth App** แล้วใส่ client id/secret ใน Netlify (Sveltia รองรับ)
-5. แก้ `site:` ใน `astro.config.mjs` ให้เป็นโดเมนจริง
-6. เมื่ออาจารย์บันทึกใน `/admin` → commit เข้า Git → Netlify build เว็บใหม่อัตโนมัติ
-
-> GitHub Pages ก็ใช้ได้ (ฟรี) แต่ต้องตั้ง GitHub OAuth เองสำหรับ `/admin`
-
-## อ้างอิง
-
-- Guide to AUN-QA Assessment at Programme Level v4.0 — ASEAN University Network
+- ตั้ง GitHub OAuth ให้ `/admin` ล็อกอินได้ (เช่น Sveltia authenticator บน Cloudflare Workers)
+- ใส่ข้อมูลจริง: ผลงานนิสิต/ภาพ, ข้อมูลติดต่อ (อีเมล/โทร), โปรไฟล์อาจารย์
+- โดเมนของคณะ (custom domain) ผ่าน Netlify

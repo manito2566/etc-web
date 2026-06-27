@@ -6,6 +6,10 @@ export const site = {
   shortName: "ETC",
   faculty_th: "คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม",
   faculty_en: "Faculty of Education, Mahasarakham University",
+  address_th: "คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ถนนนครสวรรค์ ตำบลตลาด อำเภอเมือง จังหวัดมหาสารคาม 44000",
+  address_en: "Faculty of Education, Mahasarakham University, Nakhon Sawan Rd., Talat, Mueang, Maha Sarakham 44000",
+  phone: "043-719852 ต่อ 6235",
+  fax: "043-721764",
 };
 
 // ระบบในเครือข่ายของสาขา — แสดงเป็นการ์ดศูนย์รวมบนหน้าแรก

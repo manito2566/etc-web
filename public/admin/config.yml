@@ -3,6 +3,8 @@ backend:
   name: github
   repo: manito2566/etc-web
   branch: main
+  # ตัวช่วย OAuth (Cloudflare Worker) สำหรับล็อกอิน /admin บนเว็บจริง
+  base_url: https://sveltia-cms-auth.manit42.workers.dev
 
 # เปิดให้แก้แบบ local ก่อนได้ (รัน: npx @sveltia/cms-proxy-server)
 local_backend: true

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { useTranslations, pick } from "../../i18n/utils";
+import { useTranslations, pick, localizePath } from "../../i18n/utils";
 import type { Lang } from "../../i18n/ui";
 import { getCollection } from "astro:content";
 
@@ -36,11 +36,9 @@ const courses = (await getCollection("courses")).sort((a, b) =>
         </div>
         <h2 class="mt-3 font-semibold text-slate-800">{pick(lang, p.data.name_th, p.data.name_en)}</h2>
         <p class="mt-2 flex-1 text-sm text-slate-600">{pick(lang, p.data.desc_th, p.data.desc_en)}</p>
-        {p.data.link && (
-          <a href={p.data.link} target="_blank" rel="noopener" class="mt-3 text-sm font-medium text-brand-700 hover:underline">
-            {t("common.readMore")} <i class="ti ti-external-link text-xs" aria-hidden="true"></i>
-          </a>
-        )}
+        <a href={localizePath(lang, `/programs/${p.id}`)} class="mt-3 text-sm font-medium text-brand-700 hover:underline">
+          {t("common.readMore")} →
+        </a>
       </article>
     ))}
   </div>

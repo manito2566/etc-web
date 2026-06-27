@@ -14,6 +14,7 @@ export const ui = {
   th: {
     "site.name": "สาขาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา",
     "site.short": "ETC",
+    "site.navName": "เทคโนโลยีการศึกษาฯ",
     "site.tagline": "ผลิตครูนักออกแบบการเรียนรู้ยุคดิจิทัล — คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม",
     "nav.home": "หน้าแรก",
     "nav.about": "เกี่ยวกับสาขา",
@@ -62,6 +63,7 @@ export const ui = {
   en: {
     "site.name": "Educational Technology & Computer Education",
     "site.short": "ETC",
+    "site.navName": "Educational Technology",
     "site.tagline": "Educating digital-age learning designers — Faculty of Education, Mahasarakham University",
     "nav.home": "Home",
     "nav.about": "About",

@@ -8,7 +8,7 @@ degree_en: "M.Ed."
 duration_th: "2 ปี"
 duration_en: "2 years"
 icon: "books"
-desc_th: "พัฒนานักวิชาการและนักออกแบบการเรียนรู้ขั้นสูง ด้านการออกแบบระบบการเรียนการสอน สื่อ และนวัตกรรมการศึกษา (โปรดยืนยัน/แก้ไขชื่อและรายละเอียดให้ตรงตามหลักสูตรจริงผ่านระบบจัดการเนื้อหา)"
-desc_en: "Develops advanced scholars and learning designers in instructional design, media and educational innovation. (Please verify/edit the exact name and details via the CMS.)"
+desc_th: "หลักสูตรการศึกษามหาบัณฑิต สาขาวิชาเทคโนโลยีและสื่อสารการศึกษา (หลักสูตรปรับปรุง พ.ศ. 2569) มุ่งพัฒนานักวิชาการและนักออกแบบการเรียนรู้ขั้นสูง ด้านการออกแบบระบบการเรียนการสอน สื่อ และนวัตกรรมการศึกษา"
+desc_en: "Master of Education Program in Educational Technology and Communications (revised 2569). Develops advanced scholars and learning designers in instructional design, media and educational innovation."
 order: 2
 ---

@@ -11,6 +11,9 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
 
+const programs = (await getCollection("programs")).sort(
+  (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
+);
 const projects = (await getCollection("projects")).sort(
   (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
 );
@@ -37,6 +40,13 @@ const audiences = [
     <span class="inline-block rounded-full bg-gold-400 px-3 py-1 text-sm font-medium text-brand-900">{t("home.badge")}</span>
     <h1 class="mt-3 max-w-3xl text-3xl font-bold leading-snug text-gold-300 sm:text-4xl">{t("site.name")}</h1>
     <p class="mt-3 max-w-2xl text-brand-50">{t("home.heroDesc")}</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {programs.map((p) => (
+        <span class="rounded-full bg-white/15 px-3 py-1 text-sm text-white">
+          <i class={`ti ti-${p.data.icon}`} aria-hidden="true"></i> {pick(lang, p.data.level_th, p.data.level_en)}
+        </span>
+      ))}
+    </div>
     <div class="mt-6 flex flex-wrap gap-3">
       <a href={localizePath(lang, "/courses")} class="rounded-lg bg-white px-5 py-2.5 font-semibold text-brand-800 hover:bg-brand-50">{t("home.applyCta")}</a>
       <a href={localizePath(lang, "/about")} class="rounded-lg border border-white/50 px-5 py-2.5 font-semibold text-white hover:bg-white/10">{t("home.exploreProgram")}</a>

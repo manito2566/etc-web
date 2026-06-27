@@ -1,30 +1,33 @@
 ---
-title_th: "เกี่ยวกับสาขา"
-title_en: "About the programme"
+title_th: "เกี่ยวกับภาควิชา"
+title_en: "About the department"
 order: 1
 body_th: |
-  หลักสูตรการศึกษาบัณฑิต (กศ.บ. 4 ปี) สาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา
-  คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม มุ่งผลิตครูนักออกแบบการเรียนรู้ยุคดิจิทัล
+  ภาควิชาเทคโนโลยีและสื่อสารการศึกษา คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม
+  จัดการเรียนการสอนและการวิจัยด้านเทคโนโลยีการศึกษา สื่อ และนวัตกรรมการเรียนรู้
+  ครบทุกระดับ ตั้งแต่ปริญญาตรี ปริญญาโท จนถึงปริญญาเอก
 
-  **อัตลักษณ์ของสาขา:** วิชาเอกคู่ (เทคโนโลยีการศึกษา + คอมพิวเตอร์ศึกษา)
-  ร่วมกับการฝึกประสบการณ์วิชาชีพครูที่เข้มข้น ทำให้บัณฑิตเก่งทั้งสื่อ การโค้ด และการสอน
+  **พันธกิจ:** ผลิตครู นักวิชาการ และนักวิจัยด้านเทคโนโลยีและสื่อสารการศึกษา
+  ที่มีสมรรถนะสูง พร้อมสร้างองค์ความรู้และนวัตกรรมเพื่อพัฒนาการศึกษา
 
-  **ผลการเรียนรู้ที่คาดหวัง (PLOs):**
-  - PLO1: ออกแบบและผลิตสื่อ/นวัตกรรมการเรียนรู้ด้วยกระบวนการเชิงระบบ
-  - PLO2: ประยุกต์การคิดเชิงคำนวณและเทคโนโลยีเพื่อจัดการเรียนรู้
-  - PLO3: จัดการเรียนการสอนและประเมินผู้เรียนอย่างมีคุณภาพ
-  - PLO4: มีจิตวิญญาณความเป็นครู จริยธรรม และความรับผิดชอบต่อสังคม
+  **จุดเด่น:**
+  - หลักสูตรครบ 3 ระดับ เชื่อมโยงตั้งแต่การผลิตครูถึงการวิจัยขั้นสูง
+  - อัตลักษณ์วิชาเอกคู่ (เทคโนโลยีการศึกษา + คอมพิวเตอร์ศึกษา) ในระดับปริญญาตรี
+  - เครือข่ายศิษย์เก่าเข้มแข็งกว่า 1,000 คน ในวงการการศึกษาและเทคโนโลยี
+  - ประกันคุณภาพตามมาตรฐานสากล AUN-QA
 body_en: |
-  The Bachelor of Education (4-year B.Ed.) in Educational Technology and Computer
-  Education, Faculty of Education, Mahasarakham University, educates digital-age
-  learning designers.
+  The Department of Educational Technology and Communications, Faculty of
+  Education, Mahasarakham University, provides teaching and research in
+  educational technology, media and learning innovation across all levels —
+  from bachelor's and master's to doctoral degrees.
 
-  **Programme identity:** a dual major (Educational Technology + Computer Education)
-  combined with an intensive teaching practicum — graduates excel in media, coding and teaching.
+  **Mission:** To educate highly competent teachers, scholars and researchers
+  in educational technology and communications, and to create knowledge and
+  innovation that advances education.
 
-  **Programme Learning Outcomes (PLOs):**
-  - PLO1: Design and produce learning media/innovations through a systematic process
-  - PLO2: Apply computational thinking and technology to manage learning
-  - PLO3: Deliver quality teaching and student assessment
-  - PLO4: Demonstrate the spirit of a teacher, ethics and social responsibility
+  **Highlights:**
+  - Three programme levels — from teacher education to advanced research
+  - A dual-major identity (Educational Technology + Computer Education) at bachelor's level
+  - A strong alumni network of 1,000+ across education and technology
+  - Quality assured to the international AUN-QA standard
 ---

@@ -31,6 +31,26 @@ const courses = defineCollection({
   }),
 });
 
+// หลักสูตรที่เปิดสอน (ป.ตรี / ป.โท / ป.เอก)
+const programs = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/programs" }),
+  schema: z.object({
+    level_th: z.string(), // ปริญญาตรี/โท/เอก
+    level_en: z.string(),
+    name_th: z.string(),
+    name_en: z.string().optional().default(""),
+    degree_th: z.string().optional().default(""), // เช่น กศ.บ.
+    degree_en: z.string().optional().default(""),
+    duration_th: z.string().optional().default(""),
+    duration_en: z.string().optional().default(""),
+    icon: z.string().optional().default("school"),
+    desc_th: z.string().optional().default(""),
+    desc_en: z.string().optional().default(""),
+    link: z.string().optional().default(""),
+    order: z.number().optional().default(0),
+  }),
+});
+
 // ผลงานนิสิต (showcase)
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
@@ -84,4 +104,4 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { pages, courses, projects, staff, news };
+export const collections = { pages, programs, courses, projects, staff, news };

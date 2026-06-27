@@ -45,6 +45,29 @@ collections:
       - { name: desc_th, label: "คำอธิบาย (ไทย)", widget: text, required: false }
       - { name: desc_en, label: "คำอธิบาย (อังกฤษ)", widget: text, required: false }
 
+  - name: programs
+    label: "หลักสูตร (ป.ตรี/โท/เอก)"
+    label_singular: "หลักสูตร"
+    folder: "src/content/programs"
+    format: yaml-frontmatter
+    create: true
+    sortable_fields: [order]
+    summary: "{{level_th}} · {{name_th}}"
+    fields:
+      - { name: level_th, label: "ระดับ (ไทย) เช่น ปริญญาตรี", widget: string }
+      - { name: level_en, label: "ระดับ (อังกฤษ)", widget: string, required: false }
+      - { name: name_th, label: "ชื่อสาขา (ไทย)", widget: string }
+      - { name: name_en, label: "ชื่อสาขา (อังกฤษ)", widget: string, required: false }
+      - { name: degree_th, label: "วุฒิ (ไทย) เช่น กศ.บ.", widget: string, required: false }
+      - { name: degree_en, label: "วุฒิ (อังกฤษ)", widget: string, required: false }
+      - { name: duration_th, label: "ระยะเวลา (ไทย)", widget: string, required: false }
+      - { name: duration_en, label: "ระยะเวลา (อังกฤษ)", widget: string, required: false }
+      - { name: icon, label: "ไอคอน (Tabler เช่น school, books, certificate)", widget: string, required: false, default: "school" }
+      - { name: desc_th, label: "รายละเอียด (ไทย)", widget: text, required: false }
+      - { name: desc_en, label: "รายละเอียด (อังกฤษ)", widget: text, required: false }
+      - { name: link, label: "ลิงก์รายละเอียดหลักสูตร", widget: string, required: false }
+      - { name: order, label: "ลำดับ", widget: number, value_type: int, required: false }
+
   - name: projects
     label: "ผลงานนิสิต"
     label_singular: "ผลงาน"

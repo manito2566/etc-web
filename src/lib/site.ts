@@ -1,8 +1,8 @@
 // ค่าตั้งค่าระดับเว็บ + ลิงก์ระบบในเครือข่ายของสาขา (ecosystem)
 
 export const site = {
-  name_th: "สาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา",
-  name_en: "Educational Technology and Computer Education",
+  name_th: "ภาควิชาเทคโนโลยีและสื่อสารการศึกษา",
+  name_en: "Department of Educational Technology and Communications",
   shortName: "ETC",
   faculty_th: "คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม",
   faculty_en: "Faculty of Education, Mahasarakham University",

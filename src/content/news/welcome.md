@@ -1,7 +1,7 @@
 ---
 title_th: ปฐมนิเทศนิสิตใหม่ระดับบัณฑิตศึกษา สาขาวิชาเทคโนโลยีและสื่อสารการศึกษา ประจำปีการศึกษา 2569
 title_en: Orientation Program for New Graduate Students in Educational Technology and Communications, Academic Year 2026
-date: 2026-06-27
+date: 2026-06-28
 summary_th: วันที่ 27 มิถุนายน 2569 คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม จัดโครงการปฐมนิเทศนิสิตใหม่ระดับบัณฑิตศึกษา ประจำปีการศึกษา 2569 เพื่อเตรียมความพร้อม สร้างความเข้าใจเกี่ยวกับการเรียนระดับบัณฑิตศึกษา และต้อนรับนิสิตใหม่เข้าสู่ครอบครัว ETC อย่างอบอุ่น
 summary_en: On June 27, 2026, the Faculty of Education, Mahasarakham University, organized the Orientation Program for New Graduate Students for the Academic Year 2026. The program aimed to prepare new students for graduate studies, provide essential academic information, and warmly welcome them to the ETC family.
 cover: ''
@@ -14,7 +14,7 @@ body_th: |-
 
   ช่วงท้ายของกิจกรรม นิสิตสาขาวิชาเทคโนโลยีและสื่อสารการศึกษา หรือ ETC ได้แยกพบอาจารย์ประจำหลักสูตรและคณาจารย์ในแต่ละสาขาวิชา เพื่อรับทราบรายละเอียดเกี่ยวกับโครงสร้างหลักสูตร แผนการเรียน ตารางเรียน และการลงทะเบียนเรียน ซึ่งเป็นการสร้างความเข้าใจและเตรียมความพร้อมก่อนเปิดภาคการศึกษาอย่างเป็นทางการ
 
-  คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ขอแสดงความยินดีและขอต้อนรับนิสิตใหม่ทุกคนเข้าสู่ครอบครัว ETC ขอให้การเดินทางในระดับบัณฑิตศึกษาเต็มไปด้วยโอกาสแห่งการเรียนรู้ ความสำเร็จ และประสบการณ์อันทรงคุณค่า![](/uploads/ETC69.jpg)
+  คณะศึกษาศาสตร์ มหาวิทยาลัยมหาสารคาม ขอแสดงความยินดีและขอต้อนรับนิสิตใหม่ทุกคนเข้าสู่ครอบครัว ETC ขอให้การเดินทางในระดับบัณฑิตศึกษาเต็มไปด้วยโอกาสแห่งการเรียนรู้ ความสำเร็จ และประสบการณ์อันทรงคุณค่า![etc69_grade](/uploads/ETC69.jpg "etc69")
 body_en: |-
   On June 27, 2026, the Faculty of Education, Mahasarakham University, organized the Orientation Program for New Graduate Students for the Academic Year 2026. The program aimed to prepare new students for graduate studies and provide them with essential information for their academic journey.
 

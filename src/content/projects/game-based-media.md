@@ -7,7 +7,7 @@ year: 2568
 award_th: ทุนการศึกษา​ "ทุนภูมิพล"
 award_en: National award
 student: นิสิตชั้นปีที่ 4
-icon: device-gamepad-2
+icon: award
 cover: /uploads/มน.jpg
 link: ''
 desc_th: |-

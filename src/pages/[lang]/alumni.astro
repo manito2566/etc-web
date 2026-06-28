@@ -23,7 +23,7 @@ const ui = lang === "th"
       evTitle: "กิจกรรมและงานพบปะ", evDesc: "งานคืนสู่เหย้า สัมมนา และกิจกรรมเพื่อสังคม",
       loading: "กำลังโหลด…", emptyAlumni: "ยังไม่มีข้อมูลศิษย์เก่าในระบบ",
       emptyNews: "ยังไม่มีข่าวสารในระบบ", emptyEvents: "ยังไม่มีกิจกรรมในระบบ",
-      error: "โหลดข้อมูลไม่สำเร็จ", viewAll: "ดูทั้งหมด (เข้าสู่ระบบ)", noName: "ไม่ระบุชื่อ", gen: "รุ่น", by: "โดย",
+      error: "โหลดข้อมูลไม่สำเร็จ", viewAll: "ดูทั้งหมด (เข้าสู่ระบบ)", allNews: "อ่านข่าวทั้งหมด", noName: "ไม่ระบุชื่อ", gen: "รุ่น", by: "โดย",
       locale: "th-TH",
     }
   : {
@@ -33,7 +33,7 @@ const ui = lang === "th"
       evTitle: "Events & Gatherings", evDesc: "Homecoming, seminars and social activities",
       loading: "Loading…", emptyAlumni: "No alumni records yet",
       emptyNews: "No news yet", emptyEvents: "No events yet",
-      error: "Failed to load", viewAll: "View all (sign in)", noName: "Unnamed", gen: "Class", by: "by",
+      error: "Failed to load", viewAll: "View all (sign in)", allNews: "Read all news", noName: "Unnamed", gen: "Class", by: "by",
       locale: "en-US",
     };
 ---
@@ -81,8 +81,13 @@ const ui = lang === "th"
 
   <!-- ข่าวสาร -->
   <section id="alumni-news" class="mt-12 scroll-mt-24">
-    <h2 class="text-xl font-bold text-slate-800">{ui.newsTitle}</h2>
-    <p class="mt-1 text-sm text-slate-500">{ui.newsDesc}</p>
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2 class="text-xl font-bold text-slate-800">{ui.newsTitle}</h2>
+        <p class="mt-1 text-sm text-slate-500">{ui.newsDesc}</p>
+      </div>
+      <a href={alumniUrl} target="_blank" rel="noopener" class="text-sm font-medium text-brand-700 hover:underline">{ui.allNews} →</a>
+    </div>
     <div id="news-grid" class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <p id="news-state" class="col-span-full text-center text-sm text-slate-400">{ui.loading}</p>
     </div>
@@ -151,7 +156,7 @@ const ui = lang === "th"
               ${date ? `<time class="text-xs font-medium text-brand-600">${esc(date)}</time>` : ""}
               <h3 class="mt-1 font-semibold text-slate-800 group-hover:text-brand-700">${esc(it.title || "")}</h3>
               ${excerpt ? `<p class="mt-2 flex-1 text-sm text-slate-600">${esc(excerpt)}…</p>` : ""}
-              ${it.userName ? `<p class="mt-3 text-xs text-slate-400">${esc(ui.by)} ${esc(it.userName)}</p>` : ""}
+              ${it.userName ? `<p class="mt-3 text-xs text-slate-400">${esc(ui.by)} ${esc(String(it.userName).split("@")[0])}</p>` : ""}
             </div>
           </a>`;
         }).join("");

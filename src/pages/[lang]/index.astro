@@ -125,11 +125,20 @@ const audiences = [
       </div>
       <div class="mt-4 grid gap-4 sm:grid-cols-3">
         {news.map((n) => (
-          <article class="rounded-xl border border-slate-200 bg-white p-5">
-            <time class="text-xs font-medium text-brand-600">{fmt(n.data.date)}</time>
-            <h3 class="mt-1 font-semibold text-slate-800">{pick(lang, n.data.title_th, n.data.title_en)}</h3>
-            <p class="mt-2 text-sm text-slate-600">{pick(lang, n.data.summary_th, n.data.summary_en)}</p>
-          </article>
+          <a href={localizePath(lang, `/news/${n.id}`)} class="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-brand-400 hover:shadow-sm">
+            {n.data.cover ? (
+              <img src={n.data.cover} alt={pick(lang, n.data.title_th, n.data.title_en)} class="h-40 w-full object-cover" />
+            ) : (
+              <div class="flex h-40 w-full items-center justify-center bg-brand-50 text-brand-300">
+                <i class="ti ti-news text-4xl" aria-hidden="true"></i>
+              </div>
+            )}
+            <div class="flex flex-1 flex-col p-5">
+              <time class="text-xs font-medium text-brand-600">{fmt(n.data.date)}</time>
+              <h3 class="mt-1 font-semibold text-slate-800 group-hover:text-brand-700">{pick(lang, n.data.title_th, n.data.title_en)}</h3>
+              <p class="mt-2 flex-1 text-sm text-slate-600">{pick(lang, n.data.summary_th, n.data.summary_en)}</p>
+            </div>
+          </a>
         ))}
       </div>
     </section>

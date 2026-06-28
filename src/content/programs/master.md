@@ -1,15 +1,16 @@
 ---
-level_th: "ปริญญาโท"
-level_en: "Master's"
-name_th: "เทคโนโลยีและสื่อสารการศึกษา"
-name_en: "Educational Technology and Communications"
-degree_th: "กศ.ม."
-degree_en: "M.Ed."
-duration_th: "2 ปี"
-duration_en: "2 years"
-icon: "books"
-desc_th: "หลักสูตรการศึกษามหาบัณฑิต สาขาวิชาเทคโนโลยีและสื่อสารการศึกษา (หลักสูตรปรับปรุง พ.ศ. 2569) บูรณาการเทคโนโลยีและสื่อสารการศึกษาเข้ากับเทคโนโลยีสมัยใหม่และปัญญาประดิษฐ์ (AI) เพื่อผลิตนักเทคโนโลยีดิจิทัลและผู้นำการเปลี่ยนแปลงด้านการศึกษา"
-desc_en: "Master of Education Program in Educational Technology and Communications (revised 2569). Integrates educational technology with modern technologies and AI to produce digital technologists and leaders of educational change."
+level_th: ปริญญาโท
+level_en: Master's
+name_th: เทคโนโลยีและสื่อสารการศึกษา
+name_en: Educational Technology and Communications
+degree_th: กศ.ม.
+degree_en: M.Ed.
+duration_th: 2 ปี
+duration_en: 2 years
+icon: books
+desc_th: หลักสูตรการศึกษามหาบัณฑิต สาขาวิชาเทคโนโลยีและสื่อสารการศึกษา (หลักสูตรปรับปรุง พ.ศ. 2569) บูรณาการเทคโนโลยีและสื่อสารการศึกษาเข้ากับเทคโนโลยีสมัยใหม่และปัญญาประดิษฐ์ (AI) เพื่อผลิตนักเทคโนโลยีดิจิทัลและผู้นำการเปลี่ยนแปลงด้านการศึกษา
+desc_en: Master of Education Program in Educational Technology and Communications (revised 2569). Integrates educational technology with modern technologies and AI to produce digital technologists and leaders of educational change.
+link: https://drive.google.com/file/d/1-04hXaTCKxZb0RirGBnTFUuoMtFytJQY/view?usp=sharing
 order: 2
 ---
 

@@ -13,6 +13,14 @@ const alumniUrl = ecosystem.find((e) => e.key === "alumni")!.url;
 const points = lang === "th"
   ? ["ทำเนียบศิษย์เก่า ค้นหาเพื่อนร่วมรุ่นตามปีที่จบ", "กิจกรรมคืนสู่เหย้าและสัมมนากว่า 50 ครั้งต่อปี", "ข่าวสารและเรื่องราวความสำเร็จของศิษย์เก่า"]
   : ["Alumni directory — find classmates by graduation year", "50+ homecoming and seminar activities per year", "News and alumni success stories"];
+
+// public Firebase web config ของแอปศิษย์เก่า (etc-alumni-webappv1) — เป็นค่า public อยู่แล้ว
+const ALUMNI_PROJECT = "etc-alumni-webappv1";
+const ALUMNI_API_KEY = "AIzaSyBZpp96E8nfcWy4q3nRYRdLH6H9q677lVY";
+
+const ui = lang === "th"
+  ? { dirTitle: "ทำเนียบศิษย์เก่า", dirDesc: "ศิษย์เก่าบางส่วนในเครือข่ายของเรา", loading: "กำลังโหลดข้อมูลศิษย์เก่า…", empty: "ยังไม่มีข้อมูลศิษย์เก่าในระบบ", error: "ไม่สามารถโหลดข้อมูลศิษย์เก่าได้ในขณะนี้", viewAll: "ดูทำเนียบทั้งหมด (เข้าสู่ระบบ)", noName: "ไม่ระบุชื่อ", gen: "รุ่น" }
+  : { dirTitle: "Alumni Directory", dirDesc: "A glimpse of alumni in our network", loading: "Loading alumni…", empty: "No alumni records yet", error: "Unable to load alumni at the moment", viewAll: "View full directory (sign in)", noName: "Unnamed", gen: "Class" };
 ---
 <BaseLayout lang={lang} title={t("alumni.title")} description={t("alumni.desc")}>
   <section class="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-700 to-brand-500 px-6 py-12 text-white sm:px-10">
@@ -31,4 +39,61 @@ const points = lang === "th"
       </div>
     ))}
   </section>
+
+  <section class="mt-12">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2 class="text-xl font-bold text-slate-800">{ui.dirTitle}</h2>
+        <p class="mt-1 text-sm text-slate-500">{ui.dirDesc}</p>
+      </div>
+      <a href={alumniUrl} target="_blank" rel="noopener" class="text-sm font-medium text-brand-700 hover:underline">{ui.viewAll} →</a>
+    </div>
+
+    <div id="alumni-grid" class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <p id="alumni-state" class="col-span-full text-center text-sm text-slate-400">{ui.loading}</p>
+    </div>
+  </section>
+
+  <script define:vars={{ ALUMNI_PROJECT, ALUMNI_API_KEY, ui }}>
+    (async () => {
+      const grid = document.getElementById("alumni-grid");
+      const state = document.getElementById("alumni-state");
+      const sv = (f) => (f && (f.stringValue ?? f.integerValue ?? f.doubleValue)) || "";
+      const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+      const url = `https://firestore.googleapis.com/v1/projects/${ALUMNI_PROJECT}/databases/(default)/documents/alumni_public?pageSize=60&key=${ALUMNI_API_KEY}`;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        const docs = (data.documents || []).map((d) => {
+          const f = d.fields || {};
+          return {
+            name: sv(f.name), major: sv(f.major),
+            generation: sv(f.generation), graduationYear: sv(f.graduationYear),
+            currentJob: sv(f.currentJob), company: sv(f.company),
+            profileImageUrl: sv(f.profileImageUrl),
+            updatedAt: (f.updatedAt && f.updatedAt.timestampValue) || "",
+          };
+        });
+        docs.sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
+        if (docs.length === 0) { state.textContent = ui.empty; return; }
+        grid.innerHTML = docs.map((a) => {
+          const initial = encodeURIComponent((a.name || "A").charAt(0).toUpperCase());
+          const img = a.profileImageUrl || `https://placehold.co/96x96/e9d8c4/8a6d3b?text=${initial}`;
+          const klass = a.generation || a.graduationYear;
+          return `
+            <div class="flex flex-col items-center rounded-xl border border-slate-200 bg-white p-6 text-center transition hover:border-brand-300 hover:shadow-sm">
+              <img src="${esc(img)}" alt="${esc(a.name || "")}" class="h-24 w-24 rounded-full object-cover"
+                   onerror="this.onerror=null;this.src='https://placehold.co/96x96/cccccc/969696?text=${initial}'">
+              <h3 class="mt-4 font-semibold text-slate-800">${esc(a.name || ui.noName)}</h3>
+              <p class="mt-1 text-sm text-brand-700">${esc(a.major || "")}${klass ? ` · ${esc(ui.gen)} ${esc(klass)}` : ""}</p>
+              ${a.currentJob ? `<p class="mt-2 text-sm text-slate-500">${esc(a.currentJob)}${a.company ? ` · ${esc(a.company)}` : ""}</p>` : ""}
+            </div>`;
+        }).join("");
+      } catch (e) {
+        console.error("alumni fetch error", e);
+        state.textContent = ui.error;
+      }
+    })();
+  </script>
 </BaseLayout>

@@ -14,7 +14,7 @@ body_th: |-
 
   กิจกรรมดังกล่าวเป็นโอกาสสำคัญในการส่งเสริมให้นิสิตใหม่ได้เรียนรู้การอยู่ร่วมกัน การทำงานเป็นทีม การเคารพซึ่งกันและกัน และการปรับตัวสู่การเรียนในระดับอุดมศึกษาอย่างมั่นใจ ภายใต้บรรยากาศที่อบอุ่น เป็นกันเอง และสร้างสรรค์
 
-  สาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา ขอแสดงความยินดีและขอต้อนรับนิสิตใหม่ ETC22 ทุกคนเข้าสู่ครอบครัว ETC ขอให้นิสิตทุกคนมีความสุขกับการเรียนรู้ เติบโตอย่างมีคุณภาพ และก้าวสู่การเป็นบุคลากรทางการศึกษาที่มีความรู้ ความสามารถ คุณธรรม และความคิดสร้างสรรค์ต่อไป
+  สาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา ขอแสดงความยินดีและขอต้อนรับนิสิตใหม่ ETC22 ทุกคนเข้าสู่ครอบครัว ETC ขอให้นิสิตทุกคนมีความสุขกับการเรียนรู้ เติบโตอย่างมีคุณภาพ และก้าวสู่การเป็นบุคลากรทางการศึกษาที่มีความรู้ ความสามารถ คุณธรรม และความคิดสร้างสรรค์ต่อไป![](/uploads/%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B8%81%E0%B8%B2%E0%B8%A3.jpg)
 body_en: |-
   On June 28, 2026, the Educational Technology and Computer Education Program, Department of Educational Technology and Communications, Faculty of Education, Mahasarakham University, organized the ETC22 Freshmen Welcoming Project for the Academic Year 2026 at IT2 Meeting Room, Education Building 1, Faculty of Education, Mahasarakham University, City Campus.
 
@@ -24,5 +24,5 @@ body_en: |-
 
   This activity served as an important opportunity to promote collaboration, teamwork, mutual respect, and confidence among new students as they begin their higher education journey. The event was held in a warm, friendly, and creative atmosphere.
 
-  The Educational Technology and Computer Education Program warmly congratulates and welcomes all ETC22 new students to the ETC family. We wish all students happiness in learning, personal growth, and success as they continue their journey toward becoming knowledgeable, capable, ethical, and creative educational professionals.
+  The Educational Technology and Computer Education Program warmly congratulates and welcomes all ETC22 new students to the ETC family. We wish all students happiness in learning, personal growth, and success as they continue their journey toward becoming knowledgeable, capable, ethical, and creative educational professionals.![](/uploads/%E0%B8%81%E0%B8%B3%E0%B8%AB%E0%B8%99%E0%B8%94%E0%B8%81%E0%B8%B2%E0%B8%A3.jpg)
 ---

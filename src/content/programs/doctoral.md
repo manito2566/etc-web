@@ -1,15 +1,16 @@
 ---
-level_th: "ปริญญาเอก"
-level_en: "Doctoral"
-name_th: "เทคโนโลยีและสื่อสารการศึกษา"
-name_en: "Educational Technology and Communications"
-degree_th: "ปร.ด."
-degree_en: "Ph.D."
-duration_th: "3 ปี"
-duration_en: "3 years"
-icon: "certificate"
-desc_th: "หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาเทคโนโลยีและสื่อสารการศึกษา (หลักสูตรปรับปรุง พ.ศ. 2566) มุ่งผลิตผู้นำทางวิชาการและการวิจัยขั้นสูง สร้างองค์ความรู้และนวัตกรรมดิจิทัลด้านการศึกษาระดับมาตรฐานสากล"
-desc_en: "Doctor of Philosophy Program in Educational Technology and Communications (revised 2566). Produces academic leaders and advanced researchers creating world-class knowledge and digital innovation in education."
+level_th: ปริญญาเอก
+level_en: Doctoral
+name_th: เทคโนโลยีและสื่อสารการศึกษา
+name_en: Educational Technology and Communications
+degree_th: ปร.ด.
+degree_en: Ph.D.
+duration_th: 3 ปี
+duration_en: 3 years
+icon: certificate
+desc_th: หลักสูตรปรัชญาดุษฎีบัณฑิต สาขาวิชาเทคโนโลยีและสื่อสารการศึกษา (หลักสูตรปรับปรุง พ.ศ. 2566) มุ่งผลิตผู้นำทางวิชาการและการวิจัยขั้นสูง สร้างองค์ความรู้และนวัตกรรมดิจิทัลด้านการศึกษาระดับมาตรฐานสากล
+desc_en: Doctor of Philosophy Program in Educational Technology and Communications (revised 2566). Produces academic leaders and advanced researchers creating world-class knowledge and digital innovation in education.
+link: https://drive.google.com/file/d/1iYR4IJHNGppsAk8h4HS16tmhQ7-2Oxno/view?usp=sharing
 order: 3
 ---
 

@@ -12,3 +12,7 @@ npm-debug.log*
 # macOS / editor
 .DS_Store
 .vscode/
+
+# lock file omitted: npm cannot generate complete cross-platform lock on Windows
+# (Cloudflare/Linux runs npm install instead of npm ci)
+package-lock.json

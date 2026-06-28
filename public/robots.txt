@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://etc-msu.netlify.app/sitemap-index.xml
+Sitemap: https://etc-msu.pages.dev/sitemap-index.xml

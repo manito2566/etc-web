@@ -6,8 +6,8 @@ import sitemap from "@astrojs/sitemap";
 // ตั้งค่า i18n: รองรับสองภาษา ไทย (ค่าตั้งต้น) / อังกฤษ
 // เส้นทางจะเป็น /th/... และ /en/...  (prefixDefaultLocale: true => ทุกภาษามี prefix)
 export default defineConfig({
-  // โดเมนจริงบน Netlify (เปลี่ยนได้ถ้าตั้ง custom domain ภายหลัง)
-  site: "https://etc-msu.netlify.app",
+  // โดเมนจริงบน Cloudflare Pages (เปลี่ยนได้ถ้าตั้ง custom domain ภายหลัง)
+  site: "https://etc-msu.pages.dev",
   i18n: {
     locales: ["th", "en"],
     defaultLocale: "th",

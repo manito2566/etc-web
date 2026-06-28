@@ -54,27 +54,22 @@ for (const c of allCourses) {
   {courseGroups.length > 0 && (
     <section class="mt-8">
       <h2 class="border-l-4 border-gold-400 pl-3 text-lg font-bold text-slate-800">{lang === "th" ? "รายวิชาหลัก" : "Key courses"}</h2>
+      <p class="mt-1 pl-3 text-xs text-slate-400">{lang === "th" ? "คลิกรายวิชาเพื่อดูคำอธิบายรายวิชา" : "Click a course to view its description"}</p>
       <div class="mt-4 space-y-6">
         {courseGroups.map((g) => (
           <div>
             <h3 class="mb-2 font-semibold text-brand-700">{g.category}</h3>
-            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
-              <table class="w-full text-left text-sm">
-                <tbody class="divide-y divide-slate-100">
-                  {g.items.map((c) => (
-                    <tr class="align-top hover:bg-slate-50">
-                      <td class="w-24 px-4 py-3 font-mono text-brand-700">{c.data.code}</td>
-                      <td class="px-4 py-3">
-                        <p class="font-medium text-slate-800">{pick(lang, c.data.name_th, c.data.name_en)}</p>
-                        {pick(lang, c.data.desc_th, c.data.desc_en) && (
-                          <p class="mt-0.5 text-xs text-slate-500">{pick(lang, c.data.desc_th, c.data.desc_en)}</p>
-                        )}
-                      </td>
-                      <td class="w-20 whitespace-nowrap px-4 py-3 text-right text-slate-600">{c.data.credits}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div class="divide-y divide-slate-100 overflow-hidden rounded-xl border border-slate-200 bg-white">
+              {g.items.map((c) => (
+                <a
+                  href={localizePath(lang, `/subjects/${c.id}`)}
+                  class="grid grid-cols-[5rem_1fr_4rem] items-center gap-3 px-4 py-3 text-sm transition hover:bg-slate-50 sm:grid-cols-[6rem_1fr_5rem]"
+                >
+                  <span class="font-mono text-brand-700">{c.data.code}</span>
+                  <span class="font-medium text-slate-800">{pick(lang, c.data.name_th, c.data.name_en)}</span>
+                  <span class="text-right text-slate-500">{c.data.credits}</span>
+                </a>
+              ))}
             </div>
           </div>
         ))}

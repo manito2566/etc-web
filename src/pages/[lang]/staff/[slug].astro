@@ -22,13 +22,27 @@ const name = pick(lang, d.name_th, d.name_en || d.name_th);
 const expertise = pick(lang, d.expertise_th, d.expertise_en)
   .split(",").map((x) => x.trim()).filter(Boolean);
 
+// ตัดคำนำหน้าตำแหน่งวิชาการออก เพื่อใช้ค้นผลงาน
+const cleanName = (d.name_th || name)
+  .replace(/^((ผศ|รศ|ศ|อ|ดร|ศาสตรเมธี|ผู้ช่วยศาสตราจารย์|รองศาสตราจารย์|ศาสตราจารย์|อาจารย์)\.?\s*)+/u, "")
+  .trim() || name;
+const q = encodeURIComponent(`"${cleanName}"`);
+const scholarSearch = `https://scholar.google.com/scholar?q=${q}`;
+const thaijoSearch = `https://www.google.com/search?q=${encodeURIComponent(`"${cleanName}" site:tci-thaijo.org`)}`;
+
 const links = [
   { url: d.website, icon: "ti-world", label: lang === "th" ? "เว็บไซต์ส่วนตัว" : "Personal site" },
+  { url: d.profile, icon: "ti-id-badge-2", label: lang === "th" ? "ดูประวัติ (เว็บคณะ)" : "Faculty profile" },
   { url: d.scopus, icon: "ti-database", label: "Scopus" },
   { url: d.orcid, icon: "ti-id", label: "ORCID" },
-  { url: d.scholar, icon: "ti-school", label: "Google Scholar" },
   { url: d.email ? `mailto:${d.email}` : "", icon: "ti-mail", label: lang === "th" ? "อีเมล" : "Email" },
 ].filter((l) => l.url);
+
+// ลิงก์ค้นผลงาน: ใช้โปรไฟล์ Scholar จริงถ้ามี ไม่งั้นค้นจากชื่ออัตโนมัติ
+const workLinks = [
+  { url: d.scholar || scholarSearch, icon: "ti-school", label: "Google Scholar", auto: !d.scholar },
+  { url: thaijoSearch, icon: "ti-news", label: "ThaiJO", auto: true },
+];
 ---
 <BaseLayout lang={lang} title={name}>
   <a href={localizePath(lang, "/staff")} class="text-sm text-brand-600 hover:underline">← {t("nav.staff")}</a>
@@ -66,6 +80,20 @@ const links = [
       </div>
     </section>
   )}
+
+  <section class="mt-6">
+    <h2 class="text-sm font-semibold text-slate-500"><i class="ti ti-article" aria-hidden="true"></i> {lang === "th" ? "ผลงานวิชาการ" : "Academic works"}</h2>
+    <div class="mt-2 flex flex-wrap gap-2">
+      {workLinks.map((w) => (
+        <a href={w.url} target="_blank" rel="noopener"
+           class="inline-flex items-center gap-1.5 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-brand-400 hover:text-brand-700">
+          <i class={`ti ${w.icon}`} aria-hidden="true"></i>
+          {w.auto ? (lang === "th" ? `ค้นใน ${w.label}` : `Search ${w.label}`) : w.label}
+        </a>
+      ))}
+    </div>
+    <p class="mt-1.5 text-xs text-slate-400">{lang === "th" ? "ลิงก์ค้นผลงานจากชื่ออัตโนมัติ — เพิ่มลิงก์โปรไฟล์ตัวจริงได้ผ่านระบบจัดการเนื้อหา" : "Auto-generated search by name — add the exact profile link via the CMS."}</p>
+  </section>
 
   <article class="prose-etc mt-6 max-w-none">
     <Content />

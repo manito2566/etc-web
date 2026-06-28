@@ -105,6 +105,7 @@ collections:
       - { name: position_en, label: "ตำแหน่ง (อังกฤษ)", widget: string, required: false }
       - { name: email, label: "อีเมล", widget: string, required: false }
       - { name: website, label: "เว็บไซต์ส่วนตัว/portfolio", widget: string, required: false }
+      - { name: profile, label: "ลิงก์ดูประวัติ (เว็บคณะ)", widget: string, required: false }
       - { name: scopus, label: "ลิงก์ Scopus", widget: string, required: false }
       - { name: orcid, label: "ลิงก์ ORCID", widget: string, required: false }
       - { name: scholar, label: "ลิงก์ Google Scholar", widget: string, required: false }

@@ -10,7 +10,7 @@ body_th: |-
 
   การจัดกิจกรรมครั้งนี้มีวัตถุประสงค์เพื่อปฐมนิเทศ ต้อนรับ และเตรียมความพร้อมให้นิสิตใหม่ของสาขาวิชาเทคโนโลยีการศึกษาและคอมพิวเตอร์ศึกษา ได้ทำความรู้จักกับคณาจารย์ รุ่นพี่ เพื่อนร่วมรุ่น ตลอดจนสร้างความเข้าใจเกี่ยวกับการเรียน การใช้ชีวิตในรั้วมหาวิทยาลัย และวัฒนธรรมอันดีงามของสาขาวิชา
 
-  ภายในกิจกรรมประกอบด้วย การลงทะเบียนเข้าร่วมโครงการ พิธีเปิดโดยผู้ช่วยศาสตราจารย์ ดร.ธนดล ภูสีฤทธิ์ หัวหน้าภาควิชาเทคโนโลยีและสื่อสารการศึกษา พิธีบายศรีสู่ขวัญนิสิตใหม่ การแนะนำสถานที่ภายในคณะศึกษาศาสตร์ สักการะพระพุทธกันทรวิชัยและพระพุทธสักกาย กิจกรรมสานสัมพันธ์น้อง–พี่ กิจกรรมฐาน พิธีเทียน และกิจกรรมการคัดเลือกคณะกรรมการชั้นปีที่ 1
+  ภายในกิจกรรมประกอบด้วย การลงทะเบียนเข้าร่วมโครงการ พิธีเปิดโดยผู้ช่วยศาสตราจารย์ ดร.มานิตย์ อาษานอก ประธานหลักสูตร พิธีบายศรีสู่ขวัญนิสิตใหม่ การแนะนำสถานที่ภายในคณะศึกษาศาสตร์ สักการะพระพุทธกันทรวิชัยและพระพุทธสักกาย กิจกรรมสานสัมพันธ์น้อง–พี่ กิจกรรมฐาน พิธีเทียน และกิจกรรมการคัดเลือกคณะกรรมการชั้นปีที่ 1
 
   กิจกรรมดังกล่าวเป็นโอกาสสำคัญในการส่งเสริมให้นิสิตใหม่ได้เรียนรู้การอยู่ร่วมกัน การทำงานเป็นทีม การเคารพซึ่งกันและกัน และการปรับตัวสู่การเรียนในระดับอุดมศึกษาอย่างมั่นใจ ภายใต้บรรยากาศที่อบอุ่น เป็นกันเอง และสร้างสรรค์
 
@@ -20,7 +20,7 @@ body_en: |-
 
   The project aimed to orient, welcome, and prepare new students of the Educational Technology and Computer Education Program. It also provided an opportunity for new students to meet faculty members, senior students, and classmates, while gaining a better understanding of university life and the positive culture of the program.
 
-  The activities included registration, an opening ceremony presided over by Assistant Professor Dr. Thanadol Phuseerit, Head of the Department of Educational Technology and Communications, the traditional welcoming ceremony for new students, an introduction to facilities within the Faculty of Education, paying respect to sacred Buddha images, senior-junior relationship-building activities, group-based activities, a candlelight ceremony, and the selection of first-year student representatives.
+  The activities included registration, an opening ceremony presided over by Assistant Professor Dr. Manit Asanok,Program Chair, the traditional welcoming ceremony for new students, an introduction to facilities within the Faculty of Education, paying respect to sacred Buddha images, senior-junior relationship-building activities, group-based activities, a candlelight ceremony, and the selection of first-year student representatives.
 
   This activity served as an important opportunity to promote collaboration, teamwork, mutual respect, and confidence among new students as they begin their higher education journey. The event was held in a warm, friendly, and creative atmosphere.
 

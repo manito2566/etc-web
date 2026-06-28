@@ -84,9 +84,13 @@ const audiences = [
     <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((p) => (
         <a href={localizePath(lang, "/projects")} class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-brand-300">
-          <div class="flex h-28 items-center justify-center bg-brand-50 text-brand-600">
-            <i class={`ti ti-${p.data.icon} text-4xl`} aria-hidden="true"></i>
-          </div>
+          {p.data.cover ? (
+            <img src={p.data.cover} alt={pick(lang, p.data.title_th, p.data.title_en)} class="h-28 w-full object-cover" />
+          ) : (
+            <div class="flex h-28 items-center justify-center bg-brand-50 text-brand-600">
+              <i class={`ti ti-${p.data.icon} text-4xl`} aria-hidden="true"></i>
+            </div>
+          )}
           <div class="p-4">
             <span class="text-xs font-medium text-brand-700">{pick(lang, p.data.category_th, p.data.category_en)}</span>
             <h3 class="mt-1 font-semibold text-slate-800 group-hover:text-brand-700">{pick(lang, p.data.title_th, p.data.title_en)}</h3>

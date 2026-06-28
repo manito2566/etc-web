@@ -19,9 +19,13 @@ const projects = (await getCollection("projects")).sort(
   <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
     {projects.map((p) => (
       <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
-        <div class="flex h-32 items-center justify-center bg-brand-50 text-brand-600">
-          <i class={`ti ti-${p.data.icon} text-5xl`} aria-hidden="true"></i>
-        </div>
+        {p.data.cover ? (
+          <img src={p.data.cover} alt={pick(lang, p.data.title_th, p.data.title_en)} class="h-32 w-full object-cover" />
+        ) : (
+          <div class="flex h-32 items-center justify-center bg-brand-50 text-brand-600">
+            <i class={`ti ti-${p.data.icon} text-5xl`} aria-hidden="true"></i>
+          </div>
+        )}
         <div class="p-5">
           <div class="flex items-center justify-between">
             <span class="text-xs font-medium text-brand-700">{pick(lang, p.data.category_th, p.data.category_en)}</span>

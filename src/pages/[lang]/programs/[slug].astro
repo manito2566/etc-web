@@ -16,6 +16,18 @@ const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
 const d = program.data;
 const { Content } = await render(program);
+
+// รายวิชาของหลักสูตรนี้ จัดกลุ่มตามหมวดวิชา (เรียงตาม order)
+const allCourses = (await getCollection("courses"))
+  .filter((c) => c.data.program === program.id)
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const courseGroups: { category: string; items: typeof allCourses }[] = [];
+for (const c of allCourses) {
+  const cat = pick(lang, c.data.category_th, c.data.category_en) || (lang === "th" ? "รายวิชา" : "Courses");
+  let g = courseGroups.find((x) => x.category === cat);
+  if (!g) { g = { category: cat, items: [] }; courseGroups.push(g); }
+  g.items.push(c);
+}
 ---
 <BaseLayout lang={lang} title={pick(lang, d.name_th, d.name_en)} description={pick(lang, d.desc_th, d.desc_en)}>
   <a href={localizePath(lang, "/courses")} class="text-sm text-brand-600 hover:underline">← {t("courses.title")}</a>
@@ -38,4 +50,35 @@ const { Content } = await render(program);
   <article class="prose-etc mt-6 max-w-none">
     <Content />
   </article>
+
+  {courseGroups.length > 0 && (
+    <section class="mt-8">
+      <h2 class="border-l-4 border-gold-400 pl-3 text-lg font-bold text-slate-800">{lang === "th" ? "รายวิชาหลัก" : "Key courses"}</h2>
+      <div class="mt-4 space-y-6">
+        {courseGroups.map((g) => (
+          <div>
+            <h3 class="mb-2 font-semibold text-brand-700">{g.category}</h3>
+            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <table class="w-full text-left text-sm">
+                <tbody class="divide-y divide-slate-100">
+                  {g.items.map((c) => (
+                    <tr class="align-top hover:bg-slate-50">
+                      <td class="w-24 px-4 py-3 font-mono text-brand-700">{c.data.code}</td>
+                      <td class="px-4 py-3">
+                        <p class="font-medium text-slate-800">{pick(lang, c.data.name_th, c.data.name_en)}</p>
+                        {pick(lang, c.data.desc_th, c.data.desc_en) && (
+                          <p class="mt-0.5 text-xs text-slate-500">{pick(lang, c.data.desc_th, c.data.desc_en)}</p>
+                        )}
+                      </td>
+                      <td class="w-20 whitespace-nowrap px-4 py-3 text-right text-slate-600">{c.data.credits}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 </BaseLayout>

@@ -17,17 +17,21 @@ const pages = defineCollection({
   }),
 });
 
-// รายวิชา
+// รายวิชา (ผูกกับหลักสูตร + จัดกลุ่มตามหมวดวิชา)
 const courses = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/courses" }),
   schema: z.object({
     code: z.string(), // รหัสวิชา
     name_th: z.string(),
-    name_en: z.string(),
-    credits: z.number().optional(),
+    name_en: z.string().optional().default(""),
+    program: z.string().optional().default(""), // bachelor / master / doctoral (slug ของหลักสูตร)
+    category_th: z.string().optional().default(""), // หมวดวิชา เช่น วิชาชีพครู, วิชาเอก, วิชาบังคับ
+    category_en: z.string().optional().default(""),
+    credits: z.string().optional().default(""), // เก็บเป็นข้อความ รองรับรูปแบบ 3(2-2-5)
     year: z.number().optional(), // ชั้นปีที่เรียน
     desc_th: z.string().optional().default(""),
     desc_en: z.string().optional().default(""),
+    order: z.number().optional().default(0),
   }),
 });
 

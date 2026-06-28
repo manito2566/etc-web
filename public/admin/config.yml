@@ -35,15 +35,26 @@ collections:
     folder: "src/content/courses"
     format: yaml-frontmatter
     create: true
-    summary: "{{code}} · {{name_th}}"
+    sortable_fields: [program, order, code]
+    summary: "{{program}} · {{code}} · {{name_th}}"
     fields:
       - { name: code, label: "รหัสวิชา", widget: string }
       - { name: name_th, label: "ชื่อวิชา (ไทย)", widget: string }
-      - { name: name_en, label: "ชื่อวิชา (อังกฤษ)", widget: string }
-      - { name: credits, label: "หน่วยกิต", widget: number, value_type: int, required: false }
+      - { name: name_en, label: "ชื่อวิชา (อังกฤษ)", widget: string, required: false }
+      - name: program
+        label: "หลักสูตร"
+        widget: select
+        options:
+          - { label: "ปริญญาตรี", value: bachelor }
+          - { label: "ปริญญาโท", value: master }
+          - { label: "ปริญญาเอก", value: doctoral }
+      - { name: category_th, label: "หมวดวิชา (ไทย) เช่น วิชาเอก, วิชาบังคับ", widget: string, required: false }
+      - { name: category_en, label: "หมวดวิชา (อังกฤษ)", widget: string, required: false }
+      - { name: credits, label: "หน่วยกิต (เช่น 3 หรือ 3(2-2-5))", widget: string, required: false }
       - { name: year, label: "ชั้นปี", widget: number, value_type: int, required: false }
       - { name: desc_th, label: "คำอธิบาย (ไทย)", widget: text, required: false }
       - { name: desc_en, label: "คำอธิบาย (อังกฤษ)", widget: text, required: false }
+      - { name: order, label: "ลำดับ", widget: number, value_type: int, required: false }
 
   - name: programs
     label: "หลักสูตร (ป.ตรี/โท/เอก)"

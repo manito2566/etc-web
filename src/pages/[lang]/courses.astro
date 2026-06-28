@@ -13,9 +13,7 @@ const t = useTranslations(lang);
 const programs = (await getCollection("programs")).sort(
   (a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)
 );
-const courses = (await getCollection("courses")).sort((a, b) =>
-  a.data.code.localeCompare(b.data.code)
-);
+const courseCount = (await getCollection("courses")).length;
 ---
 <BaseLayout lang={lang} title={t("courses.title")} description={t("courses.desc")}>
   <h1 class="text-2xl font-bold text-slate-800">{t("courses.title")}</h1>
@@ -43,35 +41,5 @@ const courses = (await getCollection("courses")).sort((a, b) =>
     ))}
   </div>
 
-  <!-- ตัวอย่างรายวิชา -->
-  {courses.length > 0 && (
-    <section class="mt-10">
-      <h2 class="text-xl font-bold text-slate-800">{t("courses.coursesTitle")}</h2>
-      <div class="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-slate-50 text-slate-500">
-            <tr>
-              <th class="px-4 py-3 font-medium">{lang === "th" ? "รหัส" : "Code"}</th>
-              <th class="px-4 py-3 font-medium">{lang === "th" ? "ชื่อวิชา" : "Course"}</th>
-              <th class="px-4 py-3 font-medium">{lang === "th" ? "หน่วยกิต" : "Credits"}</th>
-              <th class="px-4 py-3 font-medium">{lang === "th" ? "ชั้นปี" : "Year"}</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">
-            {courses.map((c) => (
-              <tr class="hover:bg-slate-50">
-                <td class="px-4 py-3 font-mono text-brand-700">{c.data.code}</td>
-                <td class="px-4 py-3">
-                  <p class="font-medium text-slate-800">{pick(lang, c.data.name_th, c.data.name_en)}</p>
-                  <p class="text-xs text-slate-500">{pick(lang, c.data.desc_th, c.data.desc_en)}</p>
-                </td>
-                <td class="px-4 py-3 text-slate-600">{c.data.credits ?? "–"}</td>
-                <td class="px-4 py-3 text-slate-600">{c.data.year ?? "–"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  )}
+  <p class="mt-6 text-sm text-slate-400">{lang === "th" ? "คลิกแต่ละหลักสูตรเพื่อดูรายละเอียดและรายวิชา" : "Click a programme to view details and courses."}</p>
 </BaseLayout>

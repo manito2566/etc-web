@@ -16,3 +16,9 @@ npm-debug.log*
 # lock file omitted: npm cannot generate complete cross-platform lock on Windows
 # (Cloudflare/Linux runs npm install instead of npm ci)
 package-lock.json
+
+# มคอ.2 source documents + extraction artifacts (copyrighted / temporary)
+scripts/*.pdf
+scripts/*.docx
+scripts/*.txt
+scripts/mko2_x/

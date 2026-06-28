@@ -10,17 +10,32 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
 const alumniUrl = ecosystem.find((e) => e.key === "alumni")!.url;
-const points = lang === "th"
-  ? ["ทำเนียบศิษย์เก่า ค้นหาเพื่อนร่วมรุ่นตามปีที่จบ", "กิจกรรมคืนสู่เหย้าและสัมมนากว่า 50 ครั้งต่อปี", "ข่าวสารและเรื่องราวความสำเร็จของศิษย์เก่า"]
-  : ["Alumni directory — find classmates by graduation year", "50+ homecoming and seminar activities per year", "News and alumni success stories"];
 
 // public Firebase web config ของแอปศิษย์เก่า (etc-alumni-webappv1) — เป็นค่า public อยู่แล้ว
 const ALUMNI_PROJECT = "etc-alumni-webappv1";
 const ALUMNI_API_KEY = "AIzaSyBZpp96E8nfcWy4q3nRYRdLH6H9q677lVY";
 
 const ui = lang === "th"
-  ? { dirTitle: "ทำเนียบศิษย์เก่า", dirDesc: "ศิษย์เก่าบางส่วนในเครือข่ายของเรา", loading: "กำลังโหลดข้อมูลศิษย์เก่า…", empty: "ยังไม่มีข้อมูลศิษย์เก่าในระบบ", error: "ไม่สามารถโหลดข้อมูลศิษย์เก่าได้ในขณะนี้", viewAll: "ดูทำเนียบทั้งหมด (เข้าสู่ระบบ)", noName: "ไม่ระบุชื่อ", gen: "รุ่น" }
-  : { dirTitle: "Alumni Directory", dirDesc: "A glimpse of alumni in our network", loading: "Loading alumni…", empty: "No alumni records yet", error: "Unable to load alumni at the moment", viewAll: "View full directory (sign in)", noName: "Unnamed", gen: "Class" };
+  ? {
+      statAlumni: "ศิษย์เก่าในทำเนียบ", statEvents: "กิจกรรม", statNews: "ข่าวสาร",
+      dirTitle: "ทำเนียบศิษย์เก่า", dirDesc: "ศิษย์เก่าบางส่วนในเครือข่ายของเรา",
+      newsTitle: "ข่าวสารและเรื่องราวศิษย์เก่า", newsDesc: "อัปเดตล่าสุดจากเครือข่ายศิษย์เก่า",
+      evTitle: "กิจกรรมและงานพบปะ", evDesc: "งานคืนสู่เหย้า สัมมนา และกิจกรรมเพื่อสังคม",
+      loading: "กำลังโหลด…", emptyAlumni: "ยังไม่มีข้อมูลศิษย์เก่าในระบบ",
+      emptyNews: "ยังไม่มีข่าวสารในระบบ", emptyEvents: "ยังไม่มีกิจกรรมในระบบ",
+      error: "โหลดข้อมูลไม่สำเร็จ", viewAll: "ดูทั้งหมด (เข้าสู่ระบบ)", noName: "ไม่ระบุชื่อ", gen: "รุ่น", by: "โดย",
+      locale: "th-TH",
+    }
+  : {
+      statAlumni: "Alumni in directory", statEvents: "Events", statNews: "News",
+      dirTitle: "Alumni Directory", dirDesc: "A glimpse of alumni in our network",
+      newsTitle: "Alumni News & Stories", newsDesc: "Latest updates from the alumni network",
+      evTitle: "Events & Gatherings", evDesc: "Homecoming, seminars and social activities",
+      loading: "Loading…", emptyAlumni: "No alumni records yet",
+      emptyNews: "No news yet", emptyEvents: "No events yet",
+      error: "Failed to load", viewAll: "View all (sign in)", noName: "Unnamed", gen: "Class", by: "by",
+      locale: "en-US",
+    };
 ---
 <BaseLayout lang={lang} title={t("alumni.title")} description={t("alumni.desc")}>
   <section class="overflow-hidden rounded-2xl bg-gradient-to-br from-brand-700 to-brand-500 px-6 py-12 text-white sm:px-10">
@@ -31,16 +46,27 @@ const ui = lang === "th"
     </a>
   </section>
 
+  <!-- สถิติสด -->
   <section class="mt-8 grid gap-4 sm:grid-cols-3">
-    {points.map((p) => (
-      <div class="rounded-xl border border-slate-200 bg-white p-5 text-slate-700">
-        <i class="ti ti-check text-xl text-brand-600" aria-hidden="true"></i>
-        <p class="mt-2 text-sm">{p}</p>
-      </div>
-    ))}
+    <a href="#alumni-directory" class="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+      <i class="ti ti-users text-2xl text-brand-600" aria-hidden="true"></i>
+      <p class="mt-2 text-3xl font-bold text-slate-800"><span id="stat-alumni">–</span></p>
+      <p class="text-sm text-slate-500">{ui.statAlumni}</p>
+    </a>
+    <a href="#alumni-events" class="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+      <i class="ti ti-calendar-event text-2xl text-brand-600" aria-hidden="true"></i>
+      <p class="mt-2 text-3xl font-bold text-slate-800"><span id="stat-events">–</span></p>
+      <p class="text-sm text-slate-500">{ui.statEvents}</p>
+    </a>
+    <a href="#alumni-news" class="rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+      <i class="ti ti-news text-2xl text-brand-600" aria-hidden="true"></i>
+      <p class="mt-2 text-3xl font-bold text-slate-800"><span id="stat-news">–</span></p>
+      <p class="text-sm text-slate-500">{ui.statNews}</p>
+    </a>
   </section>
 
-  <section class="mt-12">
+  <!-- ทำเนียบศิษย์เก่า -->
+  <section id="alumni-directory" class="mt-12 scroll-mt-24">
     <div class="flex flex-wrap items-end justify-between gap-3">
       <div>
         <h2 class="text-xl font-bold text-slate-800">{ui.dirTitle}</h2>
@@ -48,52 +74,113 @@ const ui = lang === "th"
       </div>
       <a href={alumniUrl} target="_blank" rel="noopener" class="text-sm font-medium text-brand-700 hover:underline">{ui.viewAll} →</a>
     </div>
-
     <div id="alumni-grid" class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <p id="alumni-state" class="col-span-full text-center text-sm text-slate-400">{ui.loading}</p>
     </div>
   </section>
 
-  <script define:vars={{ ALUMNI_PROJECT, ALUMNI_API_KEY, ui }}>
+  <!-- ข่าวสาร -->
+  <section id="alumni-news" class="mt-12 scroll-mt-24">
+    <h2 class="text-xl font-bold text-slate-800">{ui.newsTitle}</h2>
+    <p class="mt-1 text-sm text-slate-500">{ui.newsDesc}</p>
+    <div id="news-grid" class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <p id="news-state" class="col-span-full text-center text-sm text-slate-400">{ui.loading}</p>
+    </div>
+  </section>
+
+  <!-- กิจกรรม -->
+  <section id="alumni-events" class="mt-12 scroll-mt-24">
+    <h2 class="text-xl font-bold text-slate-800">{ui.evTitle}</h2>
+    <p class="mt-1 text-sm text-slate-500">{ui.evDesc}</p>
+    <div id="events-grid" class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <p id="events-state" class="col-span-full text-center text-sm text-slate-400">{ui.loading}</p>
+    </div>
+  </section>
+
+  <script define:vars={{ ALUMNI_PROJECT, ALUMNI_API_KEY, ui, alumniUrl }}>
     (async () => {
-      const grid = document.getElementById("alumni-grid");
-      const state = document.getElementById("alumni-state");
-      const sv = (f) => (f && (f.stringValue ?? f.integerValue ?? f.doubleValue)) || "";
+      const base = `https://firestore.googleapis.com/v1/projects/${ALUMNI_PROJECT}/databases/(default)/documents`;
+      const sv = (f) => (f && (f.stringValue ?? f.integerValue ?? f.doubleValue)) ?? "";
+      const tv = (f) => (f && f.timestampValue) || "";
       const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-      const url = `https://firestore.googleapis.com/v1/projects/${ALUMNI_PROJECT}/databases/(default)/documents/alumni_public?pageSize=60&key=${ALUMNI_API_KEY}`;
-      try {
-        const res = await fetch(url);
+      const flat = (d) => { const f = d.fields || {}; const o = {}; for (const k in f) o[k] = tv(f[k]) || sv(f[k]); return o; };
+      const fmtDate = (iso) => { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString(ui.locale, { year: "numeric", month: "short", day: "numeric" }); };
+      const fetchAll = async (coll) => {
+        const res = await fetch(`${base}/${coll}?pageSize=300&key=${ALUMNI_API_KEY}`);
         if (!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-        const docs = (data.documents || []).map((d) => {
-          const f = d.fields || {};
-          return {
-            name: sv(f.name), major: sv(f.major),
-            generation: sv(f.generation), graduationYear: sv(f.graduationYear),
-            currentJob: sv(f.currentJob), company: sv(f.company),
-            profileImageUrl: sv(f.profileImageUrl),
-            updatedAt: (f.updatedAt && f.updatedAt.timestampValue) || "",
-          };
-        });
-        docs.sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
-        if (docs.length === 0) { state.textContent = ui.empty; return; }
-        grid.innerHTML = docs.map((a) => {
-          const initial = encodeURIComponent((a.name || "A").charAt(0).toUpperCase());
-          const img = a.profileImageUrl || `https://placehold.co/96x96/e9d8c4/8a6d3b?text=${initial}`;
-          const klass = a.generation || a.graduationYear;
-          return `
-            <div class="flex flex-col items-center rounded-xl border border-slate-200 bg-white p-6 text-center transition hover:border-brand-300 hover:shadow-sm">
-              <img src="${esc(img)}" alt="${esc(a.name || "")}" class="h-24 w-24 rounded-full object-cover"
-                   onerror="this.onerror=null;this.src='https://placehold.co/96x96/cccccc/969696?text=${initial}'">
-              <h3 class="mt-4 font-semibold text-slate-800">${esc(a.name || ui.noName)}</h3>
-              <p class="mt-1 text-sm text-brand-700">${esc(a.major || "")}${klass ? ` · ${esc(ui.gen)} ${esc(klass)}` : ""}</p>
-              ${a.currentJob ? `<p class="mt-2 text-sm text-slate-500">${esc(a.currentJob)}${a.company ? ` · ${esc(a.company)}` : ""}</p>` : ""}
-            </div>`;
+        const j = await res.json();
+        return (j.documents || []).map(flat);
+      };
+
+      // ---- ทำเนียบศิษย์เก่า ----
+      try {
+        const a = await fetchAll("alumni_public");
+        document.getElementById("stat-alumni").textContent = a.length.toLocaleString();
+        a.sort((x, y) => (y.updatedAt || "").localeCompare(x.updatedAt || ""));
+        const grid = document.getElementById("alumni-grid");
+        if (!a.length) { document.getElementById("alumni-state").textContent = ui.emptyAlumni; }
+        else grid.innerHTML = a.slice(0, 12).map((p) => {
+          const ini = encodeURIComponent((p.name || "A").charAt(0).toUpperCase());
+          const img = p.profileImageUrl || `https://placehold.co/96x96/e9d8c4/8a6d3b?text=${ini}`;
+          const klass = p.generation || p.graduationYear;
+          return `<div class="flex flex-col items-center rounded-xl border border-slate-200 bg-white p-6 text-center transition hover:border-brand-300 hover:shadow-sm">
+            <img src="${esc(img)}" alt="${esc(p.name || "")}" class="h-24 w-24 rounded-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/96x96/cccccc/969696?text=${ini}'">
+            <h3 class="mt-4 font-semibold text-slate-800">${esc(p.name || ui.noName)}</h3>
+            <p class="mt-1 text-sm text-brand-700">${esc(p.major || "")}${klass ? ` · ${esc(ui.gen)} ${esc(klass)}` : ""}</p>
+            ${p.currentJob ? `<p class="mt-2 text-sm text-slate-500">${esc(p.currentJob)}${p.company ? ` · ${esc(p.company)}` : ""}</p>` : ""}
+          </div>`;
         }).join("");
-      } catch (e) {
-        console.error("alumni fetch error", e);
-        state.textContent = ui.error;
-      }
+      } catch (e) { console.error(e); document.getElementById("alumni-state").textContent = ui.error; document.getElementById("stat-alumni").textContent = "–"; }
+
+      // ---- ข่าวสาร ----
+      try {
+        const n = await fetchAll("news");
+        document.getElementById("stat-news").textContent = n.length.toLocaleString();
+        n.sort((x, y) => (y.publishDate || y.createdAt || "").localeCompare(x.publishDate || x.createdAt || ""));
+        const grid = document.getElementById("news-grid");
+        if (!n.length) { document.getElementById("news-state").textContent = ui.emptyNews; }
+        else grid.innerHTML = n.slice(0, 6).map((it) => {
+          const date = fmtDate(it.publishDate || it.createdAt);
+          const cover = it.imageUrl
+            ? `<img src="${esc(it.imageUrl)}" alt="${esc(it.title || "")}" class="h-40 w-full object-cover">`
+            : `<div class="flex h-40 w-full items-center justify-center bg-brand-50 text-brand-300"><i class="ti ti-news text-4xl"></i></div>`;
+          const excerpt = (it.content || "").replace(/<[^>]*>/g, "").slice(0, 120);
+          return `<a href="${esc(alumniUrl)}" target="_blank" rel="noopener" class="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-brand-400 hover:shadow-sm">
+            ${cover}
+            <div class="flex flex-1 flex-col p-5">
+              ${date ? `<time class="text-xs font-medium text-brand-600">${esc(date)}</time>` : ""}
+              <h3 class="mt-1 font-semibold text-slate-800 group-hover:text-brand-700">${esc(it.title || "")}</h3>
+              ${excerpt ? `<p class="mt-2 flex-1 text-sm text-slate-600">${esc(excerpt)}…</p>` : ""}
+              ${it.userName ? `<p class="mt-3 text-xs text-slate-400">${esc(ui.by)} ${esc(it.userName)}</p>` : ""}
+            </div>
+          </a>`;
+        }).join("");
+      } catch (e) { console.error(e); document.getElementById("news-state").textContent = ui.error; document.getElementById("stat-news").textContent = "–"; }
+
+      // ---- กิจกรรม ----
+      try {
+        const ev = await fetchAll("events");
+        document.getElementById("stat-events").textContent = ev.length.toLocaleString();
+        ev.sort((x, y) => (y.eventDate || "").localeCompare(x.eventDate || ""));
+        const grid = document.getElementById("events-grid");
+        if (!ev.length) { document.getElementById("events-state").textContent = ui.emptyEvents; }
+        else grid.innerHTML = ev.slice(0, 6).map((it) => {
+          const date = fmtDate(it.eventDate);
+          const cover = it.imageUrl
+            ? `<img src="${esc(it.imageUrl)}" alt="${esc(it.title || "")}" class="h-40 w-full object-cover">`
+            : `<div class="flex h-40 w-full items-center justify-center bg-brand-50 text-brand-300"><i class="ti ti-calendar-event text-4xl"></i></div>`;
+          const meta = [date, it.eventTime, it.location].filter(Boolean).map(esc).join(" · ");
+          const excerpt = (it.description || "").replace(/<[^>]*>/g, "").slice(0, 120);
+          return `<div class="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white">
+            ${cover}
+            <div class="flex flex-1 flex-col p-5">
+              <h3 class="font-semibold text-slate-800">${esc(it.title || "")}</h3>
+              ${meta ? `<p class="mt-1 text-xs font-medium text-brand-600">${meta}</p>` : ""}
+              ${excerpt ? `<p class="mt-2 flex-1 text-sm text-slate-600">${esc(excerpt)}…</p>` : ""}
+            </div>
+          </div>`;
+        }).join("");
+      } catch (e) { console.error(e); document.getElementById("events-state").textContent = ui.error; document.getElementById("stat-events").textContent = "–"; }
     })();
   </script>
 </BaseLayout>

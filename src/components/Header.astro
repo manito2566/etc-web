@@ -1,6 +1,7 @@
 ---
 import { useTranslations, localizePath } from "../i18n/utils";
 import type { Lang } from "../i18n/ui";
+import { journalUrl } from "../lib/site";
 import LangSwitch from "./LangSwitch.astro";
 
 interface Props {
@@ -10,7 +11,7 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const path = Astro.url.pathname;
 
-const links: { href: string; label: string }[] = [
+const links: { href: string; label: string; external?: boolean }[] = [
   { href: localizePath(lang, "/"), label: t("nav.home") },
   { href: localizePath(lang, "/about"), label: t("nav.about") },
   { href: localizePath(lang, "/courses"), label: t("nav.courses") },
@@ -19,6 +20,7 @@ const links: { href: string; label: string }[] = [
   { href: localizePath(lang, "/alumni"), label: t("nav.alumni") },
   { href: localizePath(lang, "/news"), label: t("nav.news") },
   { href: localizePath(lang, "/contact"), label: t("nav.contact") },
+  { href: journalUrl, label: t("nav.journal"), external: true },
 ];
 const isActive = (href: string) =>
   href === localizePath(lang, "/") ? path === href || path === href + "/" : path.startsWith(href);
@@ -35,12 +37,14 @@ const isActive = (href: string) =>
       {links.map((l) => (
         <a
           href={l.href}
+          target={l.external ? "_blank" : undefined}
+          rel={l.external ? "noopener" : undefined}
           class:list={[
-            "rounded-md px-2.5 py-1.5 text-sm font-medium transition",
-            isActive(l.href) ? "bg-brand-50 text-brand-700" : "text-slate-600 hover:bg-slate-100",
+            "inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm font-medium transition",
+            !l.external && isActive(l.href) ? "bg-brand-50 text-brand-700" : "text-slate-600 hover:bg-slate-100",
           ]}
         >
-          {l.label}
+          {l.label}{l.external && <i class="ti ti-external-link text-xs" aria-hidden="true"></i>}
         </a>
       ))}
       <a href="/admin/" class="rounded-md px-2 py-1.5 text-sm text-slate-400 hover:bg-slate-100" title={t("nav.admin")} aria-label={t("nav.admin")}>⚙︎</a>
@@ -62,12 +66,14 @@ const isActive = (href: string) =>
     {links.map((l) => (
       <a
         href={l.href}
+        target={l.external ? "_blank" : undefined}
+        rel={l.external ? "noopener" : undefined}
         class:list={[
           "block rounded-md px-3 py-2.5 text-sm font-medium",
-          isActive(l.href) ? "bg-brand-50 text-brand-700" : "text-slate-700 hover:bg-slate-100",
+          !l.external && isActive(l.href) ? "bg-brand-50 text-brand-700" : "text-slate-700 hover:bg-slate-100",
         ]}
       >
-        {l.label}
+        {l.label}{l.external && <i class="ti ti-external-link ml-1 text-xs" aria-hidden="true"></i>}
       </a>
     ))}
     <a href="/admin/" class="block rounded-md px-3 py-2.5 text-sm text-slate-500 hover:bg-slate-100">{t("nav.admin")}</a>

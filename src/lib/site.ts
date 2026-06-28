@@ -33,15 +33,16 @@ export const ecosystem = [
     desc_en: "TQF, PLO/CLO and AUN-QA",
   },
   {
-    key: "faculty-site",
-    url: "https://manito2566.github.io/manit-asanok.github.io/index.html",
-    icon: "ti-user-star",
-    title_th: "เว็บผลงานอาจารย์",
-    title_en: "Faculty portfolio",
-    desc_th: "ผลงานวิชาการ · Scopus · CV",
-    desc_en: "Publications, Scopus and CV",
+    key: "journal",
+    url: "https://so02.tci-thaijo.org/index.php/etcedumsujournal",
+    icon: "ti-book",
+    title_th: "วารสารภาควิชา",
+    title_en: "Department Journal",
+    desc_th: "บทความวิจัย · TCI · ThaiJO",
+    desc_en: "Research articles · TCI · ThaiJO",
   },
 ] as const;
 
 // ลิงก์ระบบทวนสอบ (ใช้สำหรับไฮไลต์ความก้าวหน้าคุณภาพบนหน้าแรก)
 export const verificationUrl = ecosystem.find((e) => e.key === "verification")!.url;
+export const journalUrl = ecosystem.find((e) => e.key === "journal")!.url;
